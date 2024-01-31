@@ -32,10 +32,21 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-ul{
+
+ul {
   list-style-type: none;
+}
+
+.banner {
+  background-image: url("./Resource/assets/img/Banner-bg.jpg");
+  float: left;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
 }

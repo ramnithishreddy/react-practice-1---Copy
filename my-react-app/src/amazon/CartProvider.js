@@ -1,19 +1,49 @@
 import React, { createContext, useContext, useState } from "react";
+import data from "./data.json";
 
 const CartContext = createContext();
 
 export default function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [checkoutItems, setCheckoutItems] = useState([]);
+  const [currentQuantity, setCurrentQuantity] = useState(Number(0));
+  const [sortedData, setSortedData] = useState(data.Grocery);
+  const [first, setFirst] = useState("");
+  const [updatedCartItems, setUpdatedCartItems] = useState([]);
 
   const addToCart = (item) => {
-    const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
-
-    if (existingItem) {
-      updateCartItems([...cartItems], item.id, { Qty: existingItem.Qty + 1 });
+    // if (item.length > 0) {
+    //   setCartItems([...cartItems, { ...item }]);
+    // }
+    const index = cartItems?.findIndex((cartItem) => cartItem.id === item.id);
+    if (index !== -1) {
+      setUpdatedCartItems([...updatedCartItems, [...cartItems]]);
+      updatedCartItems[index].Qty < item.TQty
+        ? (updatedCartItems[index].Qty += Number(item.Qty))
+        : setCartItems(
+            updatedCartItems[index].Qty < item.TQty
+              ? updatedCartItems
+              : (alert("item is out of stock"),
+                updatedCartItems[index].Qty <= item.TQty
+                  ? first
+                  : updatedCartItems[index].Qty >= item.TQty
+                  ? setFirst([...first, { ...item }])
+                  : setCartItems([...cartItems, { ...item }]))
+          );
     } else {
-      updateCartItems([...cartItems, { ...item, Qty: item.Qty }]);
+      setCartItems([...cartItems, { ...item }]);
+      setFirst([...first, { ...item }]);
     }
+    setCartItems(
+      updatedCartItems[index].Qty < item.TQty
+        ? updatedCartItems
+        : (alert("item is out of stock"),
+          updatedCartItems[index].Qty > item.TQty
+            ? first
+            : updatedCartItems[index].Qty >= item.TQty
+            ? setFirst([...first, { ...item }])
+            : setCartItems([...cartItems, { ...item }]))
+    );
   };
 
   const updateCartItems = (items, itemId) => {
@@ -42,12 +72,18 @@ export default function CartProvider({ children }) {
     }
   };
 
-  const CbuyNow = (item) => {
-    setCheckoutItems((prevItems) => [...prevItems, { ...item, Qty: item.Qty }]);
+  const calculateTotal = (items) => {
+    return items?.reduce((total, item) => total + item.Price * item.Qty, 0);
   };
 
-  const calculateTotal = (items) => {
-    return items.reduce((total, item) => total + item.Price * item.Qty, 0);
+  const handleLowToHigh = () => {
+    const sortedItems = [...sortedData].sort((a, b) => a.Price - b.Price);
+    setSortedData(sortedItems);
+  };
+
+  const handleHighToLow = () => {
+    const sortedItems = [...sortedData].sort((a, b) => b.Price - a.Price);
+    setSortedData(sortedItems);
   };
 
   return (
@@ -56,12 +92,17 @@ export default function CartProvider({ children }) {
         cartItems,
         checkoutItems,
         buyNow,
-        CbuyNow,
         addToCart,
         updateCartItems,
         calculateTotal,
         setCartItems,
         setCheckoutItems,
+        handleLowToHigh,
+        handleHighToLow,
+        sortedData,
+        setSortedData,
+        currentQuantity,
+        setCurrentQuantity,
       }}
     >
       {children}
@@ -72,83 +113,3 @@ export default function CartProvider({ children }) {
 export const useCart = () => {
   return useContext(CartContext);
 };
-
-/* import React, { createContext, useContext, useState } from 'react'
-
-const CartContext = createContext()
-
-export default function CartProvider({ children }){
-  const [cartItems, setCartItems] = useState([])
-  const [checkoutItems, setCheckoutItems] = useState([])
- 
-  const addToCart = (item) => {
-    console.log(item.id,'cartpro8')
-
-    const existingItem = cartItems.find(cartItem => cartItem.id === item.id)
-    if (existingItem) {
-      setCartItems((prevItems) =>
-        prevItems.map((cartItem) =>
-          cartItem.id === item.id ? { ...cartItem, Qty: cartItem.Qty + 1 } : cartItem
-        )
-      )
-    } else {
-      setCartItems(prevItems => [...prevItems, { ...item, Qty: 1 }])
-    }
-  }
-
-  const buyNow = (item) => {
-    const existingItem = checkoutItems.find(checkoutItem => checkoutItem.id === item.id)
-    console.log(checkoutItems,'2626cartpro')
-    if (existingItem) {
-      setCheckoutItems((prevItems) =>
-        prevItems.map((checkoutItem) =>
-          checkoutItem.id === item.id ? { ...checkoutItem, Qty: checkoutItem.Qty + 1 } : checkoutItem
-        )
-      )
-    } else {
-      setCheckoutItems((prevItems) => [...prevItems, { ...item, Qty: 1 }])
-    }
-  }
-  const CbuyNow = (item) => {
-    const existingItem = cartItems.find(cartItem => cartItem.id === item.id && cartItem.id !== item.id)
-    console.log(cartItems,'3838cartpro')
-    if (existingItem) {
-      setCheckoutItems((prevItems) =>
-        prevItems.map((cartItem) =>
-          cartItem.id === item.id ? { ...cartItem, Qty: cartItem.Qty + 1 } : cartItem
-        )
-      )
-    } else {
-      setCheckoutItems((prevItems) => [...prevItems, { ...item, Qty: 1 }])
-    }
-  }
-
-  const CcalculateTotal = () => {
-      let total = 0;
-      for (const item of cartItems) {
-        total += item.Price * item.Qty;
-      }
-      return total;
-  }
-  const BcalculateTotal = () => {
-    let total = 0;
-    for (const item of cartItems) {
-      total += item.Price * item.Qty;
-    }
-    return total;
-  }
-
-  return (
-    <CartContext.Provider value={{ cartItems, checkoutItems, addToCart, buyNow, CbuyNow, CcalculateTotal, BcalculateTotal, setCartItems, setCheckoutItems}}>
-      {children}
-    </CartContext.Provider>
-  )
-}
-
-export const useCart = () => {
-  return useContext(CartContext)
-}
-
-
-
- */

@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
-import { Link,useNavigate} from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('user')));
-  const nav = useNavigate()
-  console.log(userInfo,'10Login')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [userInfo, setUserInfo] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
+  const nav = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-  const match = userInfo.find(item => item.email === email && item.password === password)
-  console.log(match,'1515')
+    const match = userInfo.find(
+      (item) => item.email === email && item.password === password
+    );
     if (match) {
-     
-      setErrorMessage('');
-      // localStorage.setItem('user', JSON.stringify({ userInfo }))
-      alert('Login successful!');
-      nav('/', {state : match})
-      setUserInfo('')
-    
+      setErrorMessage("");
+      alert("Login successful!");
+      nav("/", { state: match });
+      setUserInfo("");
     } else {
-      setErrorMessage('Invalid email or password');
+      setErrorMessage("Invalid email or password");
     }
   };
 
@@ -32,7 +31,7 @@ const Login = () => {
         <div>
           <label>Email</label>
           <input
-            type='email'
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -41,17 +40,17 @@ const Login = () => {
         <div>
           <label>Password</label>
           <input
-            type='password'
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        {errorMessage && <p className='error-message'>{errorMessage}</p>}
-        <button type='submit'>Login</button>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <button type="submit">Login</button>
       </form>
       <p>
-        Don't have an account? <Link to='/SignUp'>Sign Up here</Link>
+        Don't have an account? <Link to="/SignUp">Sign Up here</Link>
       </p>
     </div>
   );

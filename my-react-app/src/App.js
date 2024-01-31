@@ -1,43 +1,42 @@
-import React from 'react';
-import './App.css'
-import Home from './amazon/Home'
-import Grocery from './amazon/Grocery'
-import Mobiles from './amazon/Mobiles'
-import Fashion from './amazon/Fashion'
-import ItemDetails from './amazon/ItemDetails';
-import Cart from './amazon/Cart';
+import React from "react";
+import "./App.css";
+import Home from "./amazon/Home";
+import Grocery from "./amazon/Grocery";
+import Mobiles from "./amazon/Mobiles";
+import Fashion from "./amazon/Fashion";
+import ItemDetails from "./amazon/ItemDetails";
+import Cart from "./amazon/Cart";
 /* import Table from './Pages/Table';
 import Layout from './Pages/Layout';
 import EmployeeForm from './Pages/EmployeeForm';
 import Contact from './Pages/Contact';
 import Apicalling  from './Pages/Apicalling';
 import Home from './Pages/Home'; */
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Checkout from './amazon/Checkout';
-import Nav from './amazon/Nav'
- /* import Parentcom from './components/Parentcom'; */
- /* import Homework from './components/Homework' */
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Checkout from "./amazon/Checkout";
+import Nav from "./amazon/Nav";
+import Footer from "./amazon/Footer";
+/* import Parentcom from './components/Parentcom'; */
+/* import Homework from './components/Homework' */
 
 const App = () => {
   return (
-   
-   
-
-  <BrowserRouter>
-      <div className='App'>
-        <h1> amazon </h1>
+    <BrowserRouter>
+      <div data-testid="App">
+        <h1> Amazon </h1>
         <Nav />
-       {/*  <Homework /> */}
+        {/*  <Homework /> */}
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='Grocery' element={<Grocery />} />
-          <Route path='Mobiles' element={<Mobiles />} />
-          <Route path='Fashion' element={<Fashion />} />
-          <Route path='ItemDetails' element={<ItemDetails />} />
-          <Route path='Cart' element={<Cart />} />
-          <Route path='Checkout' element={<Checkout />} />
-  </Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="Grocery" element={<Grocery />} />
+          <Route path="Mobiles" element={<Mobiles />} />
+          <Route path="Fashion" element={<Fashion />} />
+          <Route path="ItemDetails" element={<ItemDetails />} />
+          <Route path="Cart" element={<Cart />} />
+          <Route path="Checkout" element={<Checkout />} />
+        </Routes>
+        <Footer />
         {/*  <BrowserRouter>
     <Routes>
       <Route path='/' element={<Layout />}>
@@ -50,14 +49,12 @@ const App = () => {
     </Routes>
     </BrowserRouter> */}
 
-    {/*    <Parentcom />  */}
+        {/*    <Parentcom />  */}
       </div>
-      </BrowserRouter>
-     
-  )
-  }
-  export default App;
- 
+    </BrowserRouter>
+  );
+};
+export default App;
 
 /*   const Employees = [
    {Name:'Ram Nithish',Eid: 2023032, Date: '24-05-2023', age: 22, Gender: 'Male',   Location: 'Vijayawada', status: true },
@@ -121,7 +118,6 @@ const  hideData = () => {
 /* <Table />
 <Table2 /> */
 /* <Home /> */
-
 
 /* <List /> */
 /* <h1>React  training</h1>

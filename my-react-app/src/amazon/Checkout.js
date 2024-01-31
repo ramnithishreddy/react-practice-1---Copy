@@ -6,16 +6,22 @@ import DeleteIcon from "@mui/icons-material/Delete";
 const Checkout = () => {
   let { checkoutItems, calculateTotal, setCheckoutItems } = useCart();
   const checkk = (id) => {
-    let check = checkoutItems.filter((item) => item.id !== id);
+    let check = checkoutItems.filter(
+      (item) => item.id !== id && item.id === id
+    );
     setCheckoutItems(check);
   };
   const nav = useNavigate();
   const handleAlert = () => {
-    checkoutItems.filter((item) => {
-      return checkk(item.id);
+    checkoutItems.forEach((item) => {
+      if (item.Qty > 0) {
+        checkoutItems.filter((item) => {
+          return checkk(item.id);
+        });
+        alert("Order Placed Successfully");
+        nav("/");
+      } else alert("Quantity is not selected");
     });
-    alert("Order Placed Successfully");
-    nav("/");
   };
   const handleDelete = (id) => {
     let filterData = checkoutItems.filter((items) => items.id !== id);
@@ -24,7 +30,7 @@ const Checkout = () => {
   const handleQuantityChange = (id, newQuantity) => {
     let check = checkoutItems.map((item) => {
       if (item.id === id) {
-        const maxQuantity = item.maxQuantity || 10;
+        const maxQuantity = item.maxQuantity || item.TQty;
         if (maxQuantity === 0 && newQuantity > 0) {
           return null;
         } else {
@@ -62,10 +68,12 @@ const Checkout = () => {
                     }
                   >
                     {[
-                      ...Array(Math.max(item.maxQuantity || 10, 0) + 1).keys(),
+                      ...Array(
+                        Math.max(item.maxQuantity || item.TQty, 0) + 1
+                      ).keys(),
                     ].map((q) => (
                       <option key={q} value={q}>
-                        {q === 0 ? "0" : q}
+                        {q === 0 ? "0 (del)" : q}
                       </option>
                     ))}
                   </select>
