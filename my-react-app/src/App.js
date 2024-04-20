@@ -17,6 +17,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Checkout from "./amazon/Checkout";
 import Nav from "./amazon/Nav";
 import Footer from "./amazon/Footer";
+import SuccessPage from "./amazon/Successpage";
 /* import Parentcom from './components/Parentcom'; */
 /* import Homework from './components/Homework' */
 
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="ItemDetails" element={<ItemDetails />} />
           <Route path="Cart" element={<Cart />} />
           <Route path="Checkout" element={<Checkout />} />
+          <Route path="SuccessPage" element={<SuccessPage />} />
         </Routes>
         <Footer />
         {/*  <BrowserRouter>

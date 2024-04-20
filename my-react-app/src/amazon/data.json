@@ -6,7 +6,8 @@
       "Price": 165,
       "Qty": 0,
       "TQty": 10,
-      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/cookie-biscuit/q/4/q/750-assorted-cookies-75g-pack-of-10-1-unibic-original-imaghw7zehvmepkd.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/cookie-biscuit/q/4/q/750-assorted-cookies-75g-pack-of-10-1-unibic-original-imaghw7zehvmepkd.jpeg?q=70",
+      "Tags": ["Cookies", "Biscuit", "Snacks", "Chocolate", "Grocery"]
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "Price": 9,
       "Qty": 0,
       "TQty": 25,
-      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/cookie-biscuit/u/d/0/-original-imagrdppa8g8dbhb.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/cookie-biscuit/u/d/0/-original-imagrdppa8g8dbhb.jpeg?q=70",
+      "Tags": ["Cookies", "Biscuit", "Snacks", "Chocolate", "Grocery"]
     },
     {
       "id": 3,
@@ -22,7 +24,8 @@
       "Price": 9,
       "Qty": 0,
       "TQty": 6,
-      "image": "https://rukminim2.flixcart.com/image/416/416/jg6v24w0/washing-bar/m/g/f/na-100-surf-excel-original-imaf4hp8k57gq9k3.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/jg6v24w0/washing-bar/m/g/f/na-100-surf-excel-original-imaf4hp8k57gq9k3.jpeg?q=70",
+      "Tags": ["Grocery", "wash Bar", "cleaning", "soap"]
     },
     {
       "id": 4,
@@ -30,7 +33,8 @@
       "Price": 150,
       "Qty": 0,
       "TQty": 25,
-      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/liquid-detergent/t/p/i/-original-imagh6swbcvhugsh.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/liquid-detergent/t/p/i/-original-imagh6swbcvhugsh.jpeg?q=70",
+      "Tags": ["Grocery", "wash Bar", "cleaning", "soap", "Detergent", "Powder"]
     },
     {
       "id": 5,
@@ -38,7 +42,8 @@
       "Price": 49,
       "Qty": 0,
       "TQty": 10,
-      "image": "https://rukminim2.flixcart.com/image/416/416/jtsz3bk0/vegetable/k/y/d/5-onion-un-branded-no-whole-original-imafdsyg4ykqcyt4.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/jtsz3bk0/vegetable/k/y/d/5-onion-un-branded-no-whole-original-imafdsyg4ykqcyt4.jpeg?q=70",
+      "Tags": ["Grocery", "vegetables"]
     },
     {
       "id": 6,
@@ -46,7 +51,8 @@
       "Price": 122,
       "Qty": 0,
       "TQty": 26,
-      "image": "https://rukminim2.flixcart.com/image/416/416/jtsz3bk0/fruit/3/7/w/6-un-branded-whole-original-imafdsfxcufxeurw.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/jtsz3bk0/fruit/3/7/w/6-un-branded-whole-original-imafdsfxcufxeurw.jpeg?q=70",
+      "Tags": ["Grocery", "fruites"]
     }
   ],
   "Fashion": [
@@ -56,7 +62,16 @@
       "Price": 199,
       "Qty": 0,
       "TQty": 8,
-      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/t-shirt/r/v/k/m-ausk0165-ausk-original-imaghu9fbhcgf2za.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/t-shirt/r/v/k/m-ausk0165-ausk-original-imaghu9fbhcgf2za.jpeg?q=70",
+      "Tags": [
+        "Fashion",
+        "T-Shirt",
+        "Cotton",
+        "Cotton T-shirt",
+        "Blue",
+        "Black",
+        "Men"
+      ]
     },
     {
       "id": 8,
@@ -64,7 +79,8 @@
       "Price": 734,
       "Qty": 0,
       "TQty": 15,
-      "image": "https://rukminim2.flixcart.com/image/832/832/kvzkosw0/t-shirt/s/v/9/xl-askpqrgfa85753-allen-solly-original-imag8rphhg5nxsdh.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/832/832/kvzkosw0/t-shirt/s/v/9/xl-askpqrgfa85753-allen-solly-original-imag8rphhg5nxsdh.jpeg?q=70",
+      "Tags": ["Fashion", "T-Shirt", "Cotton", "Cotton T-shirt", "Black", "men"]
     },
     {
       "id": 9,
@@ -72,7 +88,8 @@
       "Price": 1049,
       "Qty": 0,
       "TQty": 6,
-      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/e/h/u/40-assfmmofh92355-allen-solly-original-imagqkhrqzgftntr.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/e/h/u/40-assfmmofh92355-allen-solly-original-imagqkhrqzgftntr.jpeg?q=70",
+      "Tags": ["Fashion", "Shirt", "Casual shirt", "Men"]
     },
     {
       "id": 10,
@@ -80,7 +97,8 @@
       "Price": 1499,
       "Qty": 0,
       "TQty": 9,
-      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/shoe/p/a/e/-original-imagf5pppqumyhq7-bb.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/shoe/p/a/e/-original-imagf5pppqumyhq7-bb.jpeg?q=70",
+      "Tags": ["Fashion", "Shoes", "Sneakers", "Men", "Blue"]
     },
     {
       "id": 11,
@@ -88,7 +106,8 @@
       "Price": 10495,
       "Qty": 0,
       "TQty": 5,
-      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/shoe/y/2/a/-original-imagpfdvejhbdncr.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/shoe/y/2/a/-original-imagpfdvejhbdncr.jpeg?q=70",
+      "Tags": ["Fashion", "Shoes", "Running", "Men", "White"]
     },
     {
       "id": 12,
@@ -96,7 +115,8 @@
       "Price": 1959,
       "Qty": 0,
       "TQty": 13,
-      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/trouser/s/w/l/-original-imaghm9bczphcx8m.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/trouser/s/w/l/-original-imaghm9bczphcx8m.jpeg?q=70",
+      "Tags": ["Fashion", "Cotton", "Trousers", "Men"]
     }
   ],
   "Mobiles": [
@@ -106,7 +126,8 @@
       "Price": 10999,
       "Qty": 0,
       "TQty": 2,
-      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/e/z/n/-original-imagrggwzadhhuz7.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/e/z/n/-original-imagrggwzadhhuz7.jpeg?q=70",
+      "Tags": ["Mobiles", "realme", "6 GB RAM", "64 GB", "realme C53"]
     },
     {
       "id": 14,
@@ -114,7 +135,14 @@
       "Price": 10999,
       "Qty": 0,
       "TQty": 3,
-      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/8/f/8/c53-rmx3762-realme-original-imagrffga9srfh7v.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/8/f/8/c53-rmx3762-realme-original-imagrffga9srfh7v.jpeg?q=70",
+      "Tags": [
+        "Mobiles",
+        "realme",
+        "6 GB RAM",
+        "64 GB",
+        "realme C53 Champion Black"
+      ]
     },
     {
       "id": 15,
@@ -122,7 +150,14 @@
       "Price": 15999,
       "Qty": 0,
       "TQty": 11,
-      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/j/i/k/galaxy-f14-5g-sm-e146bzggins-samsung-original-imagnzdkprfwj9hv.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/j/i/k/galaxy-f14-5g-sm-e146bzggins-samsung-original-imagnzdkprfwj9hv.jpeg?q=70",
+      "Tags": [
+        "Mobiles",
+        "SAMSUNG",
+        "6 GB RAM",
+        "128 GB",
+        "SAMSUNG Galaxy F14 5G Green"
+      ]
     },
     {
       "id": 16,
@@ -130,7 +165,8 @@
       "Price": 8999,
       "Qty": 0,
       "TQty": 4,
-      "image": "https://rukminim2.flixcart.com/image/416/416/jll6xzk0/mobile/g/e/r/honor-7s-na-original-imaf8zwgyjgys8gt.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/jll6xzk0/mobile/g/e/r/honor-7s-na-original-imaf8zwgyjgys8gt.jpeg?q=70",
+      "Tags": ["Mobiles", "Honor", "2 GB RAM", "16 GB", "Honor 7S"]
     },
     {
       "id": 17,
@@ -138,7 +174,8 @@
       "Price": 13999,
       "Qty": 0,
       "TQty": 7,
-      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/k/u/n/-original-imagzjhwtfthcmzz.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/k/u/n/-original-imagzjhwtfthcmzz.jpeg?q=70",
+      "Tags": ["Mobiles", "vivo", "6 GB RAM", "128 GB", "vivo T2x 5G"]
     },
     {
       "id": 18,
@@ -146,7 +183,8 @@
       "Price": 40999,
       "Qty": 0,
       "TQty": 5,
-      "image": "https://rukminim2.flixcart.com/image/416/416/k9loccw0/mobile/6/b/z/apple-iphone-se-mxd12hn-a-original-imafrcqf9nze6evk.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/416/416/k9loccw0/mobile/6/b/z/apple-iphone-se-mxd12hn-a-original-imafrcqf9nze6evk.jpeg?q=70",
+      "Tags": ["Mobiles", "APPLE", "4 GB RAM", "256 GB", "APPLE iPhone SE"]
     }
   ]
 }

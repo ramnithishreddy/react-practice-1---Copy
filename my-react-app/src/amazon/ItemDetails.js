@@ -5,6 +5,7 @@ import { useCart } from "./CartProvider";
 const ItemDetails = () => {
   const loc = useLocation();
   const item = loc.state;
+  console.log(item,"itemd from success")
   const { addToCart, buyNow } = useCart();
   const [currentQuantity, setCurrentQuantity] = useState(Number(item.Qty));
   const nav = useNavigate();
@@ -26,7 +27,7 @@ const ItemDetails = () => {
     const itemQty = { ...item, Qty: Number(currentQuantity) };
     if (itemQty.Qty > 0) {
       buyNow(itemQty);
-      nav("/Checkout");
+      nav(`/Checkout`, { state: itemQty});
     } else alert("Quantity is not selected");
   };
 

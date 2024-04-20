@@ -16,7 +16,7 @@ const Cart = () => {
       buyNow(item);
 
       if (item.Qty > 0) {
-        nav("/Checkout");
+        nav(`/Checkout`, { state: item });
         cartItems.filter((item) => {
           return checkk(item.id);
         });

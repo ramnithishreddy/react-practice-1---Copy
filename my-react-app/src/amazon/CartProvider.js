@@ -9,41 +9,85 @@ export default function CartProvider({ children }) {
   const [currentQuantity, setCurrentQuantity] = useState(Number(0));
   const [sortedData, setSortedData] = useState(data.Grocery);
   const [first, setFirst] = useState("");
+  console.log(first, "12first");
   const [updatedCartItems, setUpdatedCartItems] = useState([]);
+  console.log(updatedCartItems, "14updated");
+  const [success, setsuccess] = useState(false);
+
+  // const addToCart = (item) => {
+  //   // if (item.length > 0) {
+  //   //   setCartItems([...cartItems, { ...item }]);
+  //   // }
+  //   const index = cartItems?.findIndex((cartItem) => cartItem.id === item.id);
+  //   if (index !== -1) {
+  //     setUpdatedCartItems([...updatedCartItems, [...cartItems]]);
+  //     updatedCartItems[index].Qty < item.TQty
+  //       ? (updatedCartItems[index].Qty += Number(item.Qty))
+  //       : setCartItems(
+  //           updatedCartItems[index].Qty < item.TQty
+  //             ? updatedCartItems
+  //             : (alert("item is out of stock"),
+  //               updatedCartItems[index].Qty <= item.TQty
+  //                 ? first
+  //                 : updatedCartItems[index].Qty >= item.TQty
+  //                 ? setFirst([...first, { ...item }])
+  //                 : setCartItems([...cartItems, { ...item }]))
+  //         );
+  //   } else {
+  //     setCartItems([...cartItems, { ...item }]);
+  //     setFirst([...first, { ...item }]);
+  //   }
+  //   setCartItems(
+  //     updatedCartItems[index].Qty < item.TQty
+  //       ? updatedCartItems
+  //       : (alert("item is out of stock"),
+  //         updatedCartItems[index].Qty > item.TQty
+  //           ? first
+  //           : updatedCartItems[index].Qty >= item.TQty
+  //           ? setFirst([...first, { ...item }])
+  //           : setCartItems([...cartItems, { ...item }]))
+  //   );
+  // };
 
   const addToCart = (item) => {
-    // if (item.length > 0) {
-    //   setCartItems([...cartItems, { ...item }]);
-    // }
+    let Qtycount;
     const index = cartItems?.findIndex((cartItem) => cartItem.id === item.id);
+    console.log(index, item, "53");
     if (index !== -1) {
-      setUpdatedCartItems([...updatedCartItems, [...cartItems]]);
-      updatedCartItems[index].Qty < item.TQty
-        ? (updatedCartItems[index].Qty += Number(item.Qty))
-        : setCartItems(
-            updatedCartItems[index].Qty < item.TQty
-              ? updatedCartItems
-              : (alert("item is out of stock"),
-                updatedCartItems[index].Qty <= item.TQty
-                  ? first
-                  : updatedCartItems[index].Qty >= item.TQty
-                  ? setFirst([...first, { ...item }])
-                  : setCartItems([...cartItems, { ...item }]))
-          );
+      if (first.length > 0 && updatedCartItems.length > 0) {
+        Qtycount = (first[index]?.Qty || 0) + Number(item.Qty);
+        console.log(Qtycount, "59Qtycount");
+        console.log(item.TQty, "60TotalQty");
+        if (Qtycount <= item.TQty) {
+          const updatedItems = [...updatedCartItems];
+          updatedItems[index].Qty = Qtycount;
+          setUpdatedCartItems(updatedItems);
+        }
+      }
+      if (Qtycount > item.TQty) {
+        alert("item is out of stock");
+        setCartItems(first);
+      }
     } else {
       setCartItems([...cartItems, { ...item }]);
       setFirst([...first, { ...item }]);
+      setUpdatedCartItems([...updatedCartItems, { ...item }]);
     }
-    setCartItems(
-      updatedCartItems[index].Qty < item.TQty
-        ? updatedCartItems
-        : (alert("item is out of stock"),
-          updatedCartItems[index].Qty > item.TQty
-            ? first
-            : updatedCartItems[index].Qty >= item.TQty
-            ? setFirst([...first, { ...item }])
-            : setCartItems([...cartItems, { ...item }]))
-    );
+    if (updatedCartItems.length > 0) {
+      if (updatedCartItems[index]?.Qty <= item.TQty) {
+        setCartItems(updatedCartItems);
+      }
+    }
+    // if (updatedCartItems.length > 0) {
+    //   if (updatedCartItems[index]?.Qty <= item.TQty) {
+    //     setFirst(updatedCartItems);
+    //   }
+    // }
+    if (success) {
+      setFirst([]);
+      setUpdatedCartItems([]);
+      setsuccess(false);
+    }
   };
 
   const updateCartItems = (items, itemId) => {
