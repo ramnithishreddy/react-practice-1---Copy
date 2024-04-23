@@ -17,7 +17,6 @@ const Cart = () => {
   useEffect(() => {
     cartItems.forEach((item) => {
       if (item.Qty === 0) {
-        console.log("HIi");
         handleDeleteC(item.id);
       }
     });
