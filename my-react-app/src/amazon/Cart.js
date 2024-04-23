@@ -4,57 +4,59 @@ import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const Cart = () => {
-  const { cartItems, calculateTotal, buyNow, setCartItems } = useCart();
+  const { calculateTotal, buyNow, cartItems, setCartItems } = useCart();
   const nav = useNavigate();
-
-  useEffect(() => {
-    const cartItemsData = sessionStorage.getItem("cartItems");
-    if (cartItemsData) {
-      setCartItems(JSON.parse(cartItemsData));
-    }
-  }, [setCartItems]);
 
   useEffect(() => {
     cartItems.forEach((item) => {
       if (item.Qty === 0) {
         handleDeleteC(item.id);
+        window.location.reload();
       }
     });
   }, [cartItems]);
 
+  const cartItemsData =
+    JSON.parse(sessionStorage.getItem("cartItems")) || cartItems || [];
+  console.log("CARTITEMS==", cartItemsData);
+
   const handleBuyNow = () => {
-    cartItems.forEach((item) => {
+    cartItemsData.forEach((item) => {
       buyNow(item);
       if (item.Qty > 0) {
         nav(`/Checkout`, { state: item });
+        // window.location.reload();
       } else {
         alert("Quantity is not selected");
+        // window.location.reload();
       }
     });
   };
 
   const handleDeleteC = (id) => {
-    const filteredCartItems = cartItems.filter((item) => item.id !== id);
+    const filteredCartItems = cartItemsData.filter((item) => item.id !== id);
     setCartItems(filteredCartItems);
     sessionStorage.setItem("cartItems", JSON.stringify(filteredCartItems));
+    // window.location.reload();
   };
 
   const handleQuantityChangeC = (id, newQuantity) => {
-    const updatedCartItems = cartItems.map((item) =>
+    const updatedCartItems = cartItemsData.map((item) =>
       item.id === id ? { ...item, Qty: Number(newQuantity) } : item
     );
     setCartItems(updatedCartItems);
     sessionStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    // window.location.reload();
   };
 
   return (
     <div className="container">
       <h2>Cart Items:</h2>
-      {cartItems.length === 0 ? (
+      {cartItemsData.length === 0 ? (
         <div>Cart is empty.</div>
       ) : (
         <div>
-          {cartItems.map((item) => (
+          {cartItemsData.map((item) => (
             <div key={item.id} className="cart-item">
               <img src={item.image} alt={item.title} />
               <div>
@@ -85,7 +87,7 @@ const Cart = () => {
             </div>
           ))}
           <div className="total">
-            <h3>Total: ₹{calculateTotal(cartItems)}</h3>
+            <h3>Total: ₹{calculateTotal(cartItemsData)}</h3>
             <button onClick={handleBuyNow} className="btn btn-success">
               Buy Now
             </button>

@@ -5,12 +5,13 @@ const CartContext = createContext();
 
 export default function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
+  console.log("CARTITEMS====Pro", cartItems);
   const [checkoutItems, setCheckoutItems] = useState([]);
   const [currentQuantity, setCurrentQuantity] = useState(Number(0));
   const [sortedData, setSortedData] = useState(data.Grocery);
   const [first, setFirst] = useState("");
   const [updatedCartItems, setUpdatedCartItems] = useState([]);
-  const [success, setsuccess] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   // const addToCart = (item) => {
   //   // if (item.length > 0) {
@@ -50,11 +51,13 @@ export default function CartProvider({ children }) {
   useEffect(() => {
     const cartItemsJSON = JSON.stringify(cartItems);
     sessionStorage.setItem("cartItems", cartItemsJSON);
+    console.log(sessionStorage.getItem("cartItems"));
   }, [cartItems]);
 
   const addToCart = (item) => {
     let Qtycount;
     const index = cartItems?.findIndex((cartItem) => cartItem.id === item.id);
+    console.log("INDEX==", index);
     if (index !== -1) {
       if (first.length > 0 && updatedCartItems.length > 0) {
         Qtycount = (first[index]?.Qty || 0) + Number(item.Qty);
@@ -86,7 +89,7 @@ export default function CartProvider({ children }) {
     if (success) {
       setFirst([]);
       setUpdatedCartItems([]);
-      setsuccess(false);
+      setSuccess(false);
     }
   };
 

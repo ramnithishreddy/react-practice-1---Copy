@@ -19,6 +19,7 @@ const ItemDetails = () => {
     if (itemQty.Qty > 0) {
       addToCart(itemQty);
       nav("/Cart");
+      // window.location.reload();
     } else alert("Quantity is not selected");
   };
 
@@ -26,7 +27,7 @@ const ItemDetails = () => {
     const itemQty = { ...item, Qty: Number(currentQuantity) };
     if (itemQty.Qty > 0) {
       buyNow(itemQty);
-      nav(`/Checkout`, { state: itemQty});
+      nav(`/Checkout`, { state: itemQty });
     } else alert("Quantity is not selected");
   };
 
