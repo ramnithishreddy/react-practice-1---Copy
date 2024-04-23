@@ -14,12 +14,20 @@ const Cart = () => {
     }
   }, [setCartItems]);
 
+  useEffect(() => {
+    cartItems.forEach((item) => {
+      if (item.Qty === 0) {
+        console.log("HIi");
+        handleDeleteC(item.id);
+      }
+    });
+  }, [cartItems]);
+
   const handleBuyNow = () => {
     cartItems.forEach((item) => {
       buyNow(item);
       if (item.Qty > 0) {
         nav(`/Checkout`, { state: item });
-        handleDeleteC(item.id);
       } else {
         alert("Quantity is not selected");
       }
