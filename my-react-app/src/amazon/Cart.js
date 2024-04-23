@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useCart } from "./CartProvider";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const Cart = () => {
   const { cartItems, calculateTotal, buyNow, setCartItems } = useCart();
+  console.log("CARTCOMPARE==", cartItems);
   const nav = useNavigate();
+
+  const cartItemsData = sessionStorage.getItem("cartItems");
+  const cartItemsJSONString = JSON.parse(cartItemsData);
+
+  useEffect(() => {
+    cartItemsJSONString.forEach((item) => {
+      if (item.Qty === 0) {
+        handleDeleteC(item.id);
+      }
+    });
+  }, [cartItemsJSONString]);
+
   const checkk = (id) => {
     let check = cartItems.filter((item) => item.id !== id && item.id === id);
     setCartItems(check);
@@ -44,11 +57,11 @@ const Cart = () => {
   return (
     <div className="container">
       <h2>Cart Items:</h2>
-      {cartItems?.length === 0 ? (
+      {cartItemsJSONString?.length === 0 ? (
         <div>Cart is empty.</div>
       ) : (
         <div>
-          {cartItems?.map((item) => (
+          {cartItemsJSONString?.map((item) => (
             <div key={item.id} className="cart-item">
               <img src={item.image} alt={item.title} />
               <div>
@@ -80,7 +93,7 @@ const Cart = () => {
             </div>
           ))}
           <div className="total">
-            <h3>Total: ₹{calculateTotal(cartItems)}</h3>
+            <h3>Total: ₹{calculateTotal(cartItemsJSONString)}</h3>
             <button onClick={handleBuyNow} className="btn btn-success">
               Buy Now
             </button>

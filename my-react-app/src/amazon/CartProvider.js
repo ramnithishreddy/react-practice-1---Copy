@@ -9,9 +9,7 @@ export default function CartProvider({ children }) {
   const [currentQuantity, setCurrentQuantity] = useState(Number(0));
   const [sortedData, setSortedData] = useState(data.Grocery);
   const [first, setFirst] = useState("");
-  console.log(first, "12first");
   const [updatedCartItems, setUpdatedCartItems] = useState([]);
-  console.log(updatedCartItems, "14updated");
   const [success, setsuccess] = useState(false);
 
   // const addToCart = (item) => {
@@ -52,12 +50,9 @@ export default function CartProvider({ children }) {
   const addToCart = (item) => {
     let Qtycount;
     const index = cartItems?.findIndex((cartItem) => cartItem.id === item.id);
-    console.log(index, item, "53");
     if (index !== -1) {
       if (first.length > 0 && updatedCartItems.length > 0) {
         Qtycount = (first[index]?.Qty || 0) + Number(item.Qty);
-        console.log(Qtycount, "59Qtycount");
-        console.log(item.TQty, "60TotalQty");
         if (Qtycount <= item.TQty) {
           const updatedItems = [...updatedCartItems];
           updatedItems[index].Qty = Qtycount;
@@ -129,7 +124,8 @@ export default function CartProvider({ children }) {
     const sortedItems = [...sortedData].sort((a, b) => b.Price - a.Price);
     setSortedData(sortedItems);
   };
-
+  const cartItemsJSON = JSON.stringify(cartItems);
+  sessionStorage.setItem("cartItems", cartItemsJSON);
   return (
     <CartContext.Provider
       value={{

@@ -109,7 +109,6 @@ const Checkout = () => {
   const nav = useNavigate();
   const loc = useLocation();
   const item = loc.state;
-  console.log(item.Tags, "112Tags");
 
   const handlePayment = async () => {
     // Perform any necessary validation before initiating payment

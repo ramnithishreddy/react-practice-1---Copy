@@ -21,7 +21,6 @@ const SuccessPage = () => {
     return relatedProducts.slice(0, 3);
   };
   const onItemClick = (item) => {
-    console.log(item, "insuccess");
     item = {
       ...item,
       Qty: Number(currentQuantity) === 0 ? +1 : Number(currentQuantity),

@@ -5,7 +5,6 @@ import { useCart } from "./CartProvider";
 const ItemDetails = () => {
   const loc = useLocation();
   const item = loc.state;
-  console.log(item,"itemd from success")
   const { addToCart, buyNow } = useCart();
   const [currentQuantity, setCurrentQuantity] = useState(Number(item.Qty));
   const nav = useNavigate();
