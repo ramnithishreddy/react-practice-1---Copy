@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import data from "./data.json";
 
 const CartContext = createContext();
@@ -46,6 +46,11 @@ export default function CartProvider({ children }) {
   //           : setCartItems([...cartItems, { ...item }]))
   //   );
   // };
+
+  useEffect(() => {
+    const cartItemsJSON = JSON.stringify(cartItems);
+    sessionStorage.setItem("cartItems", cartItemsJSON);
+  }, [cartItems]);
 
   const addToCart = (item) => {
     let Qtycount;
@@ -124,8 +129,6 @@ export default function CartProvider({ children }) {
     const sortedItems = [...sortedData].sort((a, b) => b.Price - a.Price);
     setSortedData(sortedItems);
   };
-  const cartItemsJSON = JSON.stringify(cartItems);
-  sessionStorage.setItem("cartItems", cartItemsJSON);
   return (
     <CartContext.Provider
       value={{
