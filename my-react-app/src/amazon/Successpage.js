@@ -3,6 +3,7 @@ import "./Successpage.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import Data from "./data.json";
 import { useCart } from "./CartProvider";
+import { CART_BUTTON } from "./appDefault";
 
 const SuccessPage = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const SuccessPage = () => {
             <img src={product.image} alt={product.title} />
             <h4>{product.title}</h4>
             <p>₹{product.Price}</p>
-            <button>Add to Cart</button>
+            <button>{CART_BUTTON}</button>
           </div>
         ))}
       </div>

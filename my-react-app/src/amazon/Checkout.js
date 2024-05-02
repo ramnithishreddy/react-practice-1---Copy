@@ -102,6 +102,15 @@ import React, { useState } from "react";
 import { useCart } from "./CartProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {
+  ORDER_BUTTON,
+  PAYMENT_STATUS,
+  CHECKOUT_TITLE,
+  CHECKOUT_MESSAGE,
+  PRICE_TITLE,
+  QTY_TITLE,
+  TOTAL_TITLE,
+} from "./appDefault";
 
 const Checkout = () => {
   const { checkoutItems, calculateTotal, setCheckoutItems } = useCart();
@@ -163,9 +172,9 @@ const Checkout = () => {
 
   return (
     <div className="container">
-      <h2>Checkout</h2>
+      <h2>{CHECKOUT_TITLE}</h2>
       {checkoutItems.length === 0 ? (
-        <div>Your checkout is empty.</div>
+        <div>{CHECKOUT_MESSAGE}</div>
       ) : (
         <div>
           {checkoutItems.map((item) => (
@@ -173,9 +182,12 @@ const Checkout = () => {
               <img src={item.image} alt={item.title} />
               <div>
                 <h3>{item.title}</h3>
-                <p>Price: ₹{item.Price}/-</p>
+                <p>
+                  {PRICE_TITLE}
+                  {item.Price}/-
+                </p>
                 <label>
-                  Qty:
+                  {QTY_TITLE}
                   <select
                     name="Qty:"
                     value={item.Qty}
@@ -203,9 +215,12 @@ const Checkout = () => {
             </div>
           ))}
           <div className="total">
-            <h3>Total: ₹{calculateTotal(checkoutItems)}/-</h3>
+            <h3>
+              {TOTAL_TITLE}
+              {calculateTotal(checkoutItems)}/-
+            </h3>
             <button onClick={handlePayment} disabled={paymentInProgress}>
-              {paymentInProgress ? "Processing..." : "Place Order"}
+              {paymentInProgress ? { PAYMENT_STATUS } : { ORDER_BUTTON }}
             </button>
           </div>
         </div>

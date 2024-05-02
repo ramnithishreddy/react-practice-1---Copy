@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { FASHION, GROCERY, MOBILES } from "./appDefault";
 
 export default function Nav() {
   return (
@@ -25,17 +26,17 @@ export default function Nav() {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link" to="/Grocery">
-                Grocery
+                {GROCERY}
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/Mobiles">
-                Mobiles
+                {MOBILES}
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/Fashion">
-                Fashion
+                {FASHION}
               </Link>
             </li>
             <li className="nav-item">

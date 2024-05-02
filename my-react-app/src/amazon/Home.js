@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import data from "./data.json";
+import { PRICE_TITLE } from "./appDefault";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -71,7 +72,10 @@ export default function Home() {
           <div key={item.id} className="item" onClick={() => onItemClick(item)}>
             <img src={item.image} alt={item.title} />
             <p>{item.title}</p>
-            <p>Price: ₹{item.Price}</p>
+            <p>
+              {PRICE_TITLE}
+              {item.Price}
+            </p>
           </div>
         ))}
       </div>
@@ -80,7 +84,10 @@ export default function Home() {
           <div key={item.id} className="item" onClick={() => onItemClick(item)}>
             <img src={item.image} alt={item.title} />
             <p>{item.title}</p>
-            <p>Price: ₹{item.Price}</p>
+            <p>
+              {PRICE_TITLE}
+              {item.Price}
+            </p>
           </div>
         ))}
       </div>
@@ -89,7 +96,10 @@ export default function Home() {
           <div key={item.id} className="item" onClick={() => onItemClick(item)}>
             <img src={item.image} alt={item.title} />
             <p>{item.title}</p>
-            <p>Price: ₹{item.Price}</p>
+            <p>
+              {PRICE_TITLE}
+              {item.Price}
+            </p>
           </div>
         ))}
       </div>

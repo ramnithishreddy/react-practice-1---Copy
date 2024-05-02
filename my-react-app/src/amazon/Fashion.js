@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import data from "./data.json";
 import FilterButton from "./FilterButton";
 import { useCart } from "./CartProvider";
+import { PRICE_TITLE } from "./appDefault";
 
 export default function Fashion() {
   const navigate = useNavigate();
@@ -39,7 +40,10 @@ export default function Fashion() {
           <div key={item.id} className="item" onClick={() => onItemClick(item)}>
             <img src={item.image} alt={item.title} />
             <p>{item.title}</p>
-            <p>Price: ₹{item.Price}</p>
+            <p>
+              {PRICE_TITLE}
+              {item.Price}
+            </p>
           </div>
         ))}
       </div>

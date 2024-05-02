@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "./CartProvider";
+import {
+  PRICE_TITLE,
+  QTY_TITLE,
+  BUY_NOW_TITLE,
+  CART_BUTTON,
+  ITEM_MESSAGE,
+} from "./appDefault";
 
 const ItemDetails = () => {
   const loc = useLocation();
@@ -10,7 +17,7 @@ const ItemDetails = () => {
   const nav = useNavigate();
 
   if (!item) {
-    return <div>Item not found</div>;
+    return <div>{ITEM_MESSAGE}</div>;
   }
 
   const handleAddToCart = () => {
@@ -42,9 +49,12 @@ const ItemDetails = () => {
         </div>
         <div className="col-md-6">
           <h2>{item.title}</h2>
-          <h4>Price: ₹{item.Price}/-</h4>
+          <h4>
+            {PRICE_TITLE}
+            {item.Price}/-
+          </h4>
           <label>
-            Qty:
+            {QTY_TITLE}
             <select
               name="Qty:"
               value={currentQuantity}
@@ -60,10 +70,10 @@ const ItemDetails = () => {
             </select>
           </label>
           <button onClick={handleAddToCart} className="btn btn-primary">
-            Add to Cart
+            {CART_BUTTON}
           </button>
           <button onClick={handleBuyNow} className="btn btn-success">
-            Buy Now
+            {BUY_NOW_TITLE}
           </button>
         </div>
       </div>

@@ -2,26 +2,33 @@ import React, { useEffect } from "react";
 import { useCart } from "./CartProvider";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {
+  BUY_NOW_TITLE,
+  CART_TITLE,
+  CART_MESSAGE,
+  PRICE_TITLE,
+  QTY_TITLE,
+  TOTAL_TITLE,
+} from "./appDefault";
 
 const Cart = () => {
   const { calculateTotal, buyNow, cartItems, setCartItems } = useCart();
   const nav = useNavigate();
-
+  console.log(cartItems);
   useEffect(() => {
     cartItems.forEach((item) => {
       if (item.Qty === 0) {
         handleDeleteC(item.id);
-        window.location.reload();
+        // window.location.reload();
       }
     });
+    const cartItemsData =
+      JSON.parse(sessionStorage.getItem("cartItems")) || cartItems || [];
+    setCartItems(cartItemsData);
   }, [cartItems]);
 
-  const cartItemsData =
-    JSON.parse(sessionStorage.getItem("cartItems")) || cartItems || [];
-  console.log("CARTITEMS==", cartItemsData);
-
   const handleBuyNow = () => {
-    cartItemsData.forEach((item) => {
+    cartItems.forEach((item) => {
       buyNow(item);
       if (item.Qty > 0) {
         nav(`/Checkout`, { state: item });
@@ -34,14 +41,14 @@ const Cart = () => {
   };
 
   const handleDeleteC = (id) => {
-    const filteredCartItems = cartItemsData.filter((item) => item.id !== id);
+    const filteredCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(filteredCartItems);
     sessionStorage.setItem("cartItems", JSON.stringify(filteredCartItems));
     // window.location.reload();
   };
 
   const handleQuantityChangeC = (id, newQuantity) => {
-    const updatedCartItems = cartItemsData.map((item) =>
+    const updatedCartItems = cartItems.map((item) =>
       item.id === id ? { ...item, Qty: Number(newQuantity) } : item
     );
     setCartItems(updatedCartItems);
@@ -51,19 +58,22 @@ const Cart = () => {
 
   return (
     <div className="container">
-      <h2>Cart Items:</h2>
-      {cartItemsData.length === 0 ? (
-        <div>Cart is empty.</div>
+      <h2>{CART_TITLE}</h2>
+      {cartItems.length === 0 ? (
+        <div>{CART_MESSAGE}</div>
       ) : (
         <div>
-          {cartItemsData.map((item) => (
+          {cartItems.map((item) => (
             <div key={item.id} className="cart-item">
               <img src={item.image} alt={item.title} />
               <div>
                 <h3>{item.title}</h3>
-                <p>Price: ₹{item.Price}/-</p>
+                <p>
+                  {PRICE_TITLE}
+                  {item.Price}/-
+                </p>
                 <label>
-                  Qty:
+                  {QTY_TITLE}
                   <select
                     name="Qty:"
                     value={item.Qty}
@@ -87,9 +97,12 @@ const Cart = () => {
             </div>
           ))}
           <div className="total">
-            <h3>Total: ₹{calculateTotal(cartItemsData)}</h3>
+            <h3>
+              {TOTAL_TITLE}
+              {calculateTotal(cartItems)}
+            </h3>
             <button onClick={handleBuyNow} className="btn btn-success">
-              Buy Now
+              {BUY_NOW_TITLE}
             </button>
           </div>
         </div>

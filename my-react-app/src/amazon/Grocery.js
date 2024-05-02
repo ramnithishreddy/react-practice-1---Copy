@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import FilterButton from "./FilterButton";
 import { useCart } from "./CartProvider";
+import { PRICE_TITLE } from "./appDefault";
 
 const Grocery = () => {
   const navigate = useNavigate();
@@ -32,7 +33,10 @@ const Grocery = () => {
           <div key={item.id} className="item" onClick={() => onItemClick(item)}>
             <img src={item.image} alt={item.title} />
             <p>{item.title}</p>
-            <p>Price: ₹{item.Price}</p>
+            <p>
+              {PRICE_TITLE}
+              {item.Price}
+            </p>
           </div>
         ))}
       </div>
