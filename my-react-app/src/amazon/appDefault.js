@@ -1,0 +1,17 @@
+export const BUY_NOW_TITLE = "Buy Now";
+export const CART_TITLE = "Cart Items";
+export const CART_MESSAGE = "Your Cart is empty";
+export const PRICE_TITLE = "Price: ₹";
+export const QTY_TITLE = "Qty:";
+export const TOTAL_TITLE = "Total: ₹";
+export const CHECKOUT_TITLE = "Checkout Items";
+export const CHECKOUT_MESSAGE = "Your checkout is empty";
+export const PAYMENT_STATUS = "Processing...";
+export const ORDER_BUTTON = "Place Order";
+export const LEFT_FILTER_BUTTON = "Low to High";
+export const RIGHT_FILTER_BUTTON = "High to Low";
+export const CART_BUTTON = "Add to Cart";
+export const ITEM_MESSAGE = "Item not found";
+export const GROCERY = "Grocery";
+export const FASHION = "Fashion";
+export const MOBILES = "Mobiles";
