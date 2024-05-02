@@ -25,7 +25,7 @@ const Cart = () => {
     const cartItemsData =
       JSON.parse(sessionStorage.getItem("cartItems")) || cartItems || [];
     setCartItems(cartItemsData);
-  }, [cartItems]);
+  }, [cartItems, setCartItems]);
 
   const handleBuyNow = () => {
     cartItems.forEach((item) => {
