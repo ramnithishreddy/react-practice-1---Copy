@@ -39,7 +39,7 @@ export default function Home() {
           {suggestions.map((item, idx) => (
             <li
               data-testid="data"
-              key={item.id}
+              key={idx}
               onClick={() => onItemClick(item)}
             >
               {item.title}
