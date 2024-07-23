@@ -220,7 +220,7 @@ const Checkout = () => {
               {calculateTotal(checkoutItems)}/-
             </h3>
             <button onClick={handlePayment} disabled={paymentInProgress}>
-              {paymentInProgress ? { PAYMENT_STATUS } : { ORDER_BUTTON }}
+              {paymentInProgress ?  PAYMENT_STATUS  :  ORDER_BUTTON }
             </button>
           </div>
         </div>
