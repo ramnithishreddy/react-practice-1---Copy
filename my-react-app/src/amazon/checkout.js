@@ -1,5 +1,5 @@
 // import React from "react";
-// import { useCart } from "./CartProvider";
+// import { useCart } from "./cartProvider";
 // import { useNavigate } from "react-router-dom";
 // import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -99,7 +99,7 @@
 // export default Checkout;
 
 import React, { useState } from "react";
-import { useCart } from "./CartProvider";
+import { useCart } from "./cartProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
@@ -140,7 +140,7 @@ const Checkout = () => {
       setCheckoutItems([]);
 
       // Redirect to success page
-      nav(`/SuccessPage`, { state: item.Tags });
+      nav(`/successPage`, { state: item.Tags });
     } else {
       // Handle payment failure
       alert("Payment failed. Please try again.");

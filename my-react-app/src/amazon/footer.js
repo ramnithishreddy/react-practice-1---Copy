@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import "./Footer.css";
+import "./footer.css";
 
 export default function Footer() {
   function topFunction() {

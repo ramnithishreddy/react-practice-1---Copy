@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useCart } from "./CartProvider";
+import { useCart } from "./cartProvider";
 import {
   PRICE_TITLE,
   QTY_TITLE,
@@ -25,7 +25,7 @@ const ItemDetails = () => {
 
     if (itemQty.Qty > 0) {
       addToCart(itemQty);
-      nav("/Cart");
+      nav("/cart");
       // window.location.reload();
     } else alert("Quantity is not selected");
   };
@@ -34,7 +34,7 @@ const ItemDetails = () => {
     const itemQty = { ...item, Qty: Number(currentQuantity) };
     if (itemQty.Qty > 0) {
       buyNow(itemQty);
-      nav(`/Checkout`, { state: itemQty });
+      nav(`/checkout`, { state: itemQty });
     } else alert("Quantity is not selected");
   };
 

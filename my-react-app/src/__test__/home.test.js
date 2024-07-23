@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Home from "../amazon/Home";
+import Home from "../amazon/home";
 
 const mockNavigate = jest.fn();
 
@@ -33,7 +33,7 @@ describe("Home Component", () => {
     fireEvent.change(inputElement, { target: { value: "Grocery" } });
     fireEvent.click(suggestionElement);
 
-    expect(mockNavigate).toHaveBeenCalledWith("/ItemDetails", {
+    expect(mockNavigate).toHaveBeenCalledWith("/itemDetails", {
       state: expect.objectContaining({
         title: "UNIBIC Assorted(Pack of 10) Cookies  (750 g)",
       }),
@@ -47,7 +47,7 @@ describe("Home Component", () => {
     fireEvent.change(inputElement, { target: { value: "Fashion" } });
     fireEvent.click(suggestionElement);
 
-    expect(mockNavigate).toHaveBeenCalledWith("/ItemDetails", {
+    expect(mockNavigate).toHaveBeenCalledWith("/itemDetails", {
       state: expect.objectContaining({
         title: "Men Striped Round Neck Cotton Blend Blue, Black T-Shirt",
       }),
@@ -61,7 +61,7 @@ describe("Home Component", () => {
     fireEvent.change(inputElement, { target: { value: "Mobiles" } });
     fireEvent.click(suggestionElement);
 
-    expect(mockNavigate).toHaveBeenCalledWith("/ItemDetails", {
+    expect(mockNavigate).toHaveBeenCalledWith("/itemDetails", {
       state: expect.objectContaining({
         title: "SAMSUNG Galaxy F14 5G (GOAT Green, 128 GB)  (6 GB RAM)",
       }),

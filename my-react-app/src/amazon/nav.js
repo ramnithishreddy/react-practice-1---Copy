@@ -25,22 +25,22 @@ export default function Nav() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link" to="/Grocery">
+              <Link className="nav-link" to="/grocery">
                 {GROCERY}
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/Mobiles">
+              <Link className="nav-link" to="/mobiles">
                 {MOBILES}
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/Fashion">
+              <Link className="nav-link" to="/fashion">
                 {FASHION}
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/Cart">
+              <Link className="nav-link" to="/cart">
                 <ShoppingCartIcon />
               </Link>
             </li>

@@ -11,7 +11,7 @@ export default function Home() {
   const onItemClick = (item) => {
     setSuggestions([]);
     item = { ...item, Qty: Number(item.Qty) === 0 ? +1 : Number(item.Qty) };
-    navigate(`/ItemDetails`, { state: item });
+    navigate(`/itemDetails`, { state: item });
   };
   const handleInputChange = (event) => {
     const inputValue = event.target.value;

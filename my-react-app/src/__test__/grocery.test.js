@@ -1,7 +1,7 @@
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Grocery from "../amazon/Grocery";
-import CartProvider from "../amazon/CartProvider";
+import Grocery from "../amazon/grocery";
+import CartProvider from "../amazon/cartProvider";
 import data from "../amazon/data.json";
 
 const mockNavigate = jest.fn();
@@ -69,7 +69,7 @@ describe("Grocery", () => {
     });
 
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith("/ItemDetails", {
+      expect(mockNavigate).toHaveBeenCalledWith("/itemDetails", {
         state: {
           Price: 122,
           Qty: 0,

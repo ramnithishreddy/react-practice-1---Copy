@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useCart } from "./CartProvider";
+import { useCart } from "./cartProvider";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
@@ -31,7 +31,7 @@ const Cart = () => {
     cartItems.forEach((item) => {
       buyNow(item);
       if (item.Qty > 0) {
-        nav(`/Checkout`, { state: item });
+        nav(`/checkout`, { state: item });
         // window.location.reload();
       } else {
         alert("Quantity is not selected");

@@ -3,7 +3,7 @@ import "./Resource/assets/css/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
-import Home from "./Resource/Home";
+import Home from "./Resource/home";
 import Login from "./Resource/Login";
 import SignUp from "./Resource/SignUp";
 import Issue from "./Resource/Issue";

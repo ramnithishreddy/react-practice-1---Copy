@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import Footer from './Footer';
+import Footer from './footer';
 import HomeIcon from '@mui/icons-material/Home';
 
 export default function Layout() {

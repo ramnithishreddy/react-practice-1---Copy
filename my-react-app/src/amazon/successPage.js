@@ -1,8 +1,8 @@
 import React from "react";
-import "./Successpage.css";
+import "./successPage.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import Data from "./data.json";
-import { useCart } from "./CartProvider";
+import { useCart } from "./cartProvider";
 import { CART_BUTTON } from "./appDefault";
 
 const SuccessPage = () => {
@@ -27,7 +27,7 @@ const SuccessPage = () => {
       Qty: Number(currentQuantity) === 0 ? +1 : Number(currentQuantity),
     };
     setCurrentQuantity(Number(item.Qty));
-    navigate(`/ItemDetails`, { state: item });
+    navigate(`/itemDetails`, { state: item });
   };
   const relatedProducts = item ? getRelatedProducts(item) : [];
   return (

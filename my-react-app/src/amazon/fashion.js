@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import data from "./data.json";
-import FilterButton from "./FilterButton";
-import { useCart } from "./CartProvider";
+import FilterButton from "./filterButton";
+import { useCart } from "./cartProvider";
 import { PRICE_TITLE } from "./appDefault";
 
-const Mobiles = () => {
+export default function Fashion() {
   const navigate = useNavigate();
-  const [sortedData, setSortedData] = useState(data.Mobiles);
+  const [sortedData, setSortedData] = useState(data.Fashion);
   const { currentQuantity, setCurrentQuantity } = useCart();
 
   const onItemClick = (item) => {
@@ -16,16 +16,16 @@ const Mobiles = () => {
       Qty: Number(currentQuantity) === 0 ? +1 : Number(currentQuantity),
     };
     setCurrentQuantity(Number(item.Qty));
-    navigate(`/ItemDetails`, { state: item });
+    navigate(`/itemDetails`, { state: item });
   };
 
   const handleLowToHigh = () => {
-    const sortedItems = [...data.Mobiles].sort((a, b) => a.Price - b.Price);
+    const sortedItems = [...data.Fashion].sort((a, b) => a.Price - b.Price);
     setSortedData(sortedItems);
   };
 
   const handleHighToLow = () => {
-    const sortedItems = [...data.Mobiles].sort((a, b) => b.Price - a.Price);
+    const sortedItems = [...data.Fashion].sort((a, b) => b.Price - a.Price);
     setSortedData(sortedItems);
   };
 
@@ -49,6 +49,4 @@ const Mobiles = () => {
       </div>
     </div>
   );
-};
-
-export default Mobiles;
+}
