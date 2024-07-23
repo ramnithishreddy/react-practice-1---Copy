@@ -14,7 +14,6 @@ import {
 const Cart = () => {
   const { calculateTotal, buyNow, cartItems, setCartItems } = useCart();
   const nav = useNavigate();
-  console.log(cartItems);
   useEffect(() => {
     cartItems.forEach((item) => {
       if (item.Qty === 0) {
@@ -25,7 +24,7 @@ const Cart = () => {
     const cartItemsData =
       JSON.parse(sessionStorage.getItem("cartItems")) || cartItems || [];
     setCartItems(cartItemsData);
-  }, [cartItems, setCartItems]);
+  }, []);
 
   const handleBuyNow = () => {
     cartItems.forEach((item) => {

@@ -61,7 +61,6 @@ describe("Grocery", () => {
         "UNIBIC Assorted(Pack of 10) Cookies  (750 g)",
         () => {
           const hasalt = content.includes(items.title);
-          console.log(hasalt, "62");
           return hasalt;
         }
       );
