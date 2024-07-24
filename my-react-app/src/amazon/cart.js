@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useCart } from "./cartProvider";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -13,6 +13,7 @@ import {
 
 const Cart = () => {
   const { calculateTotal, buyNow, cartItems, setCartItems } = useCart();
+  const [quantity, setQuantity] = useState(0)
   const nav = useNavigate();
   useEffect(() => {
     cartItems.forEach((item) => {
@@ -20,6 +21,8 @@ const Cart = () => {
         handleDeleteC(item.id);
         // window.location.reload();
       }
+      const Quantity = item.Qty > 1 ? item.Qty - 1 : 0;
+      setQuantity(Quantity)
     });
     const cartItemsData =
       JSON.parse(sessionStorage.getItem("cartItems")) || cartItems || [];
@@ -54,23 +57,51 @@ const Cart = () => {
     sessionStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
     // window.location.reload();
   };
-
+  console.log(quantity, cartItems.length, cartItems.length + quantity)
   return (
     <div className="container">
-      <h2>{CART_TITLE}</h2>
+      <h1 className="shopping-cart">{CART_TITLE}</h1>
       {cartItems.length === 0 ? (
-        <div>{CART_MESSAGE}</div>
+        <h2 className="cart-message">{CART_MESSAGE}</h2>
       ) : (
         <div>
           {cartItems.map((item) => (
-            <div key={item.id} className="cart-item">
-              <img src={item.image} alt={item.title} />
+            <div>
+              <div className="shopping-cart-items">
+                <div>
+                  <a target="_blank" href="##"><img src={item.image} alt={item.title} width="180" height="180" /></a>
+                </div>
+                <ul className="cart-list">
+                  <li>
+                    <span>
+                      <a target="_blank" href="##">
+                        <span className="cart-title cart-title-color">{item.title}</span>
+                      </a>
+                    </span></li>
+                  <div>
+                    <div>
+                      <div>
+                        <div>
+                          <span class="cart-title list-text-bold cart-title-price"><span className="list-item">₹</span>{item.Price}.00</span>
+                        </div>
+                      </div>
+                    </div></div><div>
+                    <li>{item.TQty === 0 ? <span className="list-item list-item-color-danger">Out of stock</span> : <span className="list-item list-item-color-success">In stock</span>}</li><li><span class="list-item">{item.Price >= 500 ? 'Eligible for FREE Shipping' : 'Not Eligible for FREE Shipping'}</span></li><p>
+                      <img alt="" src="https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px._CB485936079_.png" height="18px" />
+                    </p><li><span><span>
+                      <div class="list-item"><label><input type="checkbox" name="" value="" /><span class="list-padding">This will be a gift</span></label></div></span>
+                    </span></li>
+                    <li><span>
+                      <span class="list-item list-text-bold">
+                        {item.Colors ? 'Colour:' : 'Flavour:'} {' '}
+                      </span>
+                      <span class="list-item">
+                        {item.Colors ? item.Colors[0] : item.Flavour}
+                      </span>
+                    </span></li>
+                  </div>
+                </ul></div>
               <div>
-                <h3>{item.title}</h3>
-                <p>
-                  {PRICE_TITLE}
-                  {item.Price}/-
-                </p>
                 <label>
                   {QTY_TITLE}
                   <select
@@ -96,10 +127,14 @@ const Cart = () => {
             </div>
           ))}
           <div className="total">
-            <h3>
-              {TOTAL_TITLE}
-              {calculateTotal(cartItems)}
-            </h3>
+            <div className="subtotal">
+              <span className="cart-title">
+                {TOTAL_TITLE} ({cartItems?.length + quantity} {cartItems?.length > 1 || quantity > 0 ? 'items' : 'item'}):{' '}
+              </span>
+              <div>
+                <span className="cart-title list-text-bold cart-title-price"><span className="list-item"> ₹</span>{calculateTotal(cartItems)}.00</span>
+              </div>
+            </div>
             <button onClick={handleBuyNow} className="btn btn-success">
               {BUY_NOW_TITLE}
             </button>

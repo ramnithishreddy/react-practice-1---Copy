@@ -212,7 +212,7 @@ button.showhide {
 
 /* Global styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Amazon Ember", Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -277,12 +277,62 @@ body {
 }
 
 /* Cart styles */
+.shopping-cart {
+  text-align: start;
+  padding-bottom: 4px;
+}
+
+.shopping-cart-items {
+  display: flex;
+  flex-direction: row;
+  padding-top: 12px;
+  border-top: 1px solid #ddd;
+}
+
+.cart-list {
+  list-style: none;
+}
+
 .cart-item {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
+}
+
+.cart-title-color {
+  color: #0f1111 !important;
+}
+
+.cart-title {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.cart-title-price {
+  text-align: end;
+}
+
+.list-item-color-success {
+  color: #007600 !important;
+}
+
+.list-item-color-danger {
+  color: #f10c18 !important;
+}
+
+.list-padding {
+  padding-left: 5px;
+}
+
+.list-text-bold {
+  font-weight: 700;
+}
+
+.list-item {
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .cart-item img {
@@ -293,9 +343,9 @@ body {
 }
 
 .total {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
   margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid #ddd;
@@ -316,6 +366,16 @@ body {
 
 .total button:hover {
   background-color: #444;
+}
+
+.cart-message {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.subtotal {
+  display: flex;
 }
 
 /* Checkout styles */
