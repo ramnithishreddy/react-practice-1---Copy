@@ -85,20 +85,20 @@ const Cart = () => {
                     <div>
                       <div>
                         <div>
-                          <span class="cart-title list-text-bold cart-title-price"><span className="list-item">₹</span>{item.Price}.00</span>
+                          <span className="cart-title list-text-bold cart-title-price"><span className="list-item">₹</span>{item.Price}.00</span>
                         </div>
                       </div>
                     </div></div><div>
-                    <li>{item.TQty === 0 ? <span className="list-item list-item-color-danger">Out of stock</span> : <span className="list-item list-item-color-success">In stock</span>}</li><li><span class="list-item">{item.Price >= 500 ? 'Eligible for FREE Shipping' : 'Not Eligible for FREE Shipping'}</span></li><p>
+                    <li>{item.TQty === 0 ? <span className="list-item list-item-color-danger">Out of stock</span> : <span className="list-item list-item-color-success">In stock</span>}</li><li><span className="list-item">{item.Price >= 500 ? 'Eligible for FREE Shipping' : 'Not Eligible for FREE Shipping'}</span></li><p>
                       <img alt="" src="https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px._CB485936079_.png" height="18px" />
                     </p><li><span><span>
-                      <div class="list-item"><label><input type="checkbox" name="" value="" /><span class="list-padding">This will be a gift</span></label></div></span>
+                      <div className="list-item"><label><input type="checkbox" name="" value="" /><span className="list-padding">This will be a gift</span></label></div></span>
                     </span></li>
                     <li><span>
-                      <span class="list-item list-text-bold">
+                      <span className="list-item list-text-bold">
                         {item.Colors ? 'Colour:' : item.Flavour ? 'Flavour:' : ''} {' '}
                       </span>
-                      <span class="list-item">
+                      <span className="list-item">
                         {item.Colors ? item.Colors[0] : item.Flavour}
                       </span>
                     </span></li>
