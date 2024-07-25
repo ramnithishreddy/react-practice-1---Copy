@@ -58,6 +58,8 @@ export default function CartProvider({ children }) {
     if (index !== -1) {
       if (first.length > 0 && updatedCartItems.length > 0) {
         Qtycount = (first[index]?.Qty || 0) + Number(item.Qty);
+        const firstItems = [...first];
+        firstItems[index].Qty = Qtycount;
         if (Qtycount <= item.TQty) {
           const updatedItems = [...updatedCartItems];
           updatedItems[index].Qty = Qtycount;

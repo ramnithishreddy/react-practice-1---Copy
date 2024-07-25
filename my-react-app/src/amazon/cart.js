@@ -17,11 +17,7 @@ const Cart = () => {
   const nav = useNavigate();
   useEffect(() => {
     cartItems.forEach((item) => {
-      if (item.Qty === 0) {
-        handleDeleteC(item.id);
-        // window.location.reload();
-      }
-      const Quantity = item.Qty > 1 ? item.Qty - 1 : 0;
+      const Quantity = item.Qty > 1 ? item.Qty - 1 : quantity;
       setQuantity(Quantity)
     });
     const cartItemsData =
@@ -53,11 +49,18 @@ const Cart = () => {
     const updatedCartItems = cartItems.map((item) =>
       item.id === id ? { ...item, Qty: Number(newQuantity) } : item
     );
+    cartItems.forEach((item) => {
+      if (item.Qty === 0) {
+        console.log("Hii")
+        handleDeleteC(item.id);
+        // window.location.reload();
+      }
+    });
     setCartItems(updatedCartItems);
     sessionStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
     // window.location.reload();
   };
-  console.log(quantity, cartItems.length, cartItems.length + quantity)
+  console.log('quantity:', quantity, 'cart length:', cartItems.length, 'cart + qun:', cartItems.length + quantity)
   return (
     <div className="container">
       <h1 className="shopping-cart">{CART_TITLE}</h1>
@@ -93,7 +96,7 @@ const Cart = () => {
                     </span></li>
                     <li><span>
                       <span class="list-item list-text-bold">
-                        {item.Colors ? 'Colour:' : 'Flavour:'} {' '}
+                        {item.Colors ? 'Colour:' : item.Flavour ? 'Flavour:' : ''} {' '}
                       </span>
                       <span class="list-item">
                         {item.Colors ? item.Colors[0] : item.Flavour}
