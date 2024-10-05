@@ -1,7 +1,7 @@
 export const BUY_NOW_TITLE = "Buy Now";
 export const CART_TITLE = "Shopping Cart";
 export const CART_MESSAGE = "Your Amazon Cart is empty";
-export const PRICE_TITLE = "Price: ₹";
+export const PRICE_TITLE = "Price:";
 export const QTY_TITLE = "Qty:";
 export const TOTAL_TITLE = "Subtotal";
 export const CHECKOUT_TITLE = "Checkout Items";
