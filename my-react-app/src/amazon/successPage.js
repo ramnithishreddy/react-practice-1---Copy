@@ -19,7 +19,7 @@ const SuccessPage = () => {
       );
       relatedProducts = [...relatedProducts, ...filtered];
     }
-    return relatedProducts.slice(0, 3);
+    return relatedProducts.slice(0, 6);
   };
   const onItemClick = (item) => {
     item = {
