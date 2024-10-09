@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Home from "../amazon/home";
 
@@ -68,19 +68,11 @@ describe("Home Component", () => {
     });
   });
 
-  // it("should handle setSuggestions([]) when inputValue is empty", async () => {
-  //   const inputElement = screen.queryByTestId("data");
-
-  //   // await waitFor(() => {
-  //   //   const suggestionsList = screen.queryByTestId("data");
-  //   //   expect(suggestionsList).toBeNull();
-  //   // });
-  //   //   expect(inputElement).toHaveValue(undefined);
-  //   fireEvent.click(inputElement, {
-  //     target: { value: "UNIBIC Assorted(Pack of 10) Cookies  (750 g)" },
-  //   });
-  //   expect(screen.getByTestId("data")).toBeInTheDocument(
-  //     "UNIBIC Assorted(Pack of 10) Cookies  (750 g)"
-  //   );
-  // });
+  it.skip("should handle setSuggestions([]) when inputValue is empty", async () => {
+    await waitFor(() => {
+      const suggestionsList = screen.findByTestId("input").innerText;
+      expect(suggestionsList).toBe(undefined);
+      expect(screen.findByTestId("suggestions")).toBeNull();
+    });
+  });
 });
