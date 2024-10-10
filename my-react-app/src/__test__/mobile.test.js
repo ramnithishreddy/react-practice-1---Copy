@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Grocery from "../amazon/grocery";
+import Mobiles from "../amazon/mobiles";
 import CartProvider from "../amazon/cartProvider";
 
 const mockNavigate = jest.fn();
@@ -10,24 +10,24 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,
 }));
 
-describe("Grocery", () => {
+describe("Mobiles", () => {
   const mockCartProviderValues = {
     handleLowToHigh: jest.fn(),
     handleHighToLow: jest.fn(),
     sortedData: [
       {
         id: 1,
-        title: "Apple Royal Gala 4 Units  (480g - 550g)",
+        title: "realme C53 (Champion Gold, 64 GB)  (6 GB RAM)",
         image:
-          "https://rukminim2.flixcart.com/image/416/416/jtsz3bk0/fruit/3/7/w/6-un-branded-whole-original-imafdsfxcufxeurw.jpeg?q=70",
-        Price: 122,
+          "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/e/z/n/-original-imagrggwzadhhuz7.jpeg?q=70",
+        Price: 10999,
       },
       {
         id: 2,
-        title: "UNIBIC Assorted(Pack of 10) Cookies  (750 g)",
+        title: "realme C53 (Champion Black, 64 GB)  (6 GB RAM)",
         image:
-          "https://rukminim2.flixcart.com/image/416/416/xif0q/cookie-biscuit/q/4/q/750-assorted-cookies-75g-pack-of-10-1-unibic-original-imaghw7zehvmepkd.jpeg?q=70",
-        Price: 165,
+          "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/8/f/8/c53-rmx3762-realme-original-imagrffga9srfh7v.jpeg?q=70",
+        Price: 10999,
       },
     ],
     currentQuantity: 0,
@@ -38,24 +38,24 @@ describe("Grocery", () => {
     render(
       <Router>
         <CartProvider value={mockCartProviderValues}>
-          <Grocery />
+          <Mobiles />
         </CartProvider>
       </Router>
     );
-    const itemElements = screen.getAllByRole("img", { name: /UNIBIC/i });
-    expect(itemElements).toHaveLength(1);
+    const itemElements = screen.getAllByRole("img", { name: /realme/i });
+    expect(itemElements).toHaveLength(2);
   });
 
   it("handles click on item and navigates to ItemDetails", async () => {
     render(
       <Router>
         <CartProvider value={mockCartProviderValues}>
-          <Grocery />
+          <Mobiles />
         </CartProvider>
       </Router>
     );
 
-    const itemElements = await screen.findAllByRole("img", { name: /UNIBIC/i });
+    const itemElements = await screen.findAllByRole("img", { name: /realme/i });
     fireEvent.click(itemElements[0]);
     expect(mockNavigate).toHaveBeenCalled();
   });
@@ -64,27 +64,27 @@ describe("Grocery", () => {
     render(
       <Router>
         <CartProvider value={mockCartProviderValues}>
-          <Grocery />
+          <Mobiles />
         </CartProvider>
       </Router>
     );
 
     fireEvent.click(screen.getByText(/Low to High/i));
-    const itemElements = screen.getAllByRole("img", { name: /UNIBIC/i });
-    expect(itemElements).toHaveLength(1);
+    const itemElements = screen.getAllByRole("img", { name: /realme/i });
+    expect(itemElements).toHaveLength(2);
   });
 
   it("sorts items from high to low", () => {
     render(
       <Router>
         <CartProvider value={mockCartProviderValues}>
-          <Grocery />
+          <Mobiles />
         </CartProvider>
       </Router>
     );
 
     fireEvent.click(screen.getByText(/High to Low/i));
-    const itemElements = screen.getAllByRole("img", { name: /UNIBIC/i });
-    expect(itemElements).toHaveLength(1);
+    const itemElements = screen.getAllByRole("img", { name: /realme/i });
+    expect(itemElements).toHaveLength(2);
   });
 });
