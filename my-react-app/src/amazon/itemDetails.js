@@ -13,21 +13,21 @@ const ItemDetails = () => {
   const loc = useLocation();
   const item = loc.state;
   const { addToCart, buyNow } = useCart();
-  const [currentQuantity, setCurrentQuantity] = useState(Number(item.Qty));
+  const [currentQuantity, setCurrentQuantity] = useState(item ? Number(item.Qty) : 0);
   const nav = useNavigate();
 
   if (!item) {
-    return <div>{ITEM_MESSAGE}</div>;
+    return <h2 className="cart-message">{ITEM_MESSAGE}</h2>;
   }
 
   const handleAddToCart = () => {
     const itemQty = { ...item, Qty: Number(currentQuantity) };
-
     if (itemQty.Qty > 0) {
       addToCart(itemQty);
       nav("/cart");
-      // window.location.reload();
-    } else alert("Quantity is not selected");
+    } else {
+      alert("Quantity is not selected");
+    }
   };
 
   const handleBuyNow = () => {
@@ -35,47 +35,53 @@ const ItemDetails = () => {
     if (itemQty.Qty > 0) {
       buyNow(itemQty);
       nav(`/checkout`, { state: itemQty });
-    } else alert("Quantity is not selected");
+    } else {
+      alert("Quantity is not selected");
+    }
   };
 
   const handleQuantityChangeC = (newQuantity) => {
     setCurrentQuantity(Number(newQuantity));
   };
+
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6">
+    <div className="item-details-container">
+      <div className="item-details-row">
+        <div className="item-image">
           <img src={item.image} alt={item.title} />
         </div>
-        <div className="col-md-6">
-          <h2>{item.title}</h2>
-          <h4>
-            {PRICE_TITLE}
-            {item.Price}/-
-          </h4>
-          <label>
+        <div className="item-info">
+          <h1 className="item-title">{item.title}</h1>
+          <h2 className="item-price">
+            {PRICE_TITLE} {item.Price}/-
+          </h2>
+          <label className="quantity-label">
             {QTY_TITLE}
             <select
-              name="Qty:"
               value={currentQuantity}
               onChange={(e) => handleQuantityChangeC(e.target.value)}
+              className="quantity-select"
             >
-              {[...Array(Math.max(item.TQty || item.TQty, 0) + 1).keys()].map(
-                (q) => (
-                  <option key={q} value={q}>
-                    {q === 0 ? "select" : q}
-                  </option>
-                )
-              )}
+              {[...Array(Math.max(item.TQty || 0, 0) + 1).keys()].map((q) => (
+                <option key={q} value={q}>
+                  {q === 0 ? "Select" : q}
+                </option>
+              ))}
             </select>
           </label>
-          <button onClick={handleAddToCart} className="btn btn-primary">
-            {CART_BUTTON}
-          </button>
-          <button onClick={handleBuyNow} className="btn btn-success">
-            {BUY_NOW_TITLE}
-          </button>
+          <div className="button-group">
+            <button onClick={handleAddToCart} className="btn btn-primary">
+              {CART_BUTTON}
+            </button>
+            <button onClick={handleBuyNow} className="btn btn-success">
+              {BUY_NOW_TITLE}
+            </button>
+          </div>
         </div>
+      </div>
+      <div className="item-description">
+        <h3>Description</h3>
+        <p>{item.description || "No description available."}</p>
       </div>
     </div>
   );
