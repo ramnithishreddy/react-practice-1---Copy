@@ -17,10 +17,9 @@ const Checkout = () => {
   const [paymentInProgress, setPaymentInProgress] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const item = location.state; // Use this item if needed
+  const item = location.state;
 
   const handlePayment = async () => {
-    // Validate that all items have quantities selected
     if (checkoutItems.some((item) => item.Qty <= 0)) {
       alert("Please select quantities for all items.");
       return;
@@ -28,19 +27,14 @@ const Checkout = () => {
 
     setPaymentInProgress(true);
 
-    // Simulate payment processing delay
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    // Simulate random payment success/failure
-    const paymentSuccess = Math.random() < 0.8; // 80% chance of success
+    const paymentSuccess = Math.random() < 0.8; 
 
     if (paymentSuccess) {
-      // Clear the checkout items after successful payment
       setCheckoutItems([]);
-      // Redirect to success page
       navigate(`/successPage`, { state: item.Tags });
     } else {
-      // Handle payment failure
       alert("Payment failed. Please try again.");
       setPaymentInProgress(false);
     }
@@ -52,17 +46,15 @@ const Checkout = () => {
   };
 
   const handleQuantityChange = (id, newQuantity) => {
-    const quantity = Number(newQuantity); // Convert to number
+    const quantity = Number(newQuantity); 
     const updatedItems = checkoutItems.map((item) => {
       if (item.id === id) {
         const maxQuantity = item.maxQuantity || item.TQty;
-        // Prevent setting quantity higher than available stock
         return quantity > maxQuantity ? item : { ...item, Qty: quantity };
       }
       return item;
     });
 
-    // Filter out items with quantity set to 0
     const validItems = updatedItems.filter((item) => item.Qty > 0);
     setCheckoutItems(validItems);
   };

@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { CartProvider, useCart } from '../amazon/cartProvider';
 import ItemDetails from '../amazon/itemDetails';
 
-jest.mock('../amazon/cartProvider'); // Mock the cart provider
+jest.mock('../amazon/cartProvider');
 const mockedAddToCart = jest.fn();
 const mockedBuyNow = jest.fn();
 useCart.mockReturnValue({ addToCart: mockedAddToCart, buyNow: mockedBuyNow });
