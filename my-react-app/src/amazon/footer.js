@@ -24,25 +24,25 @@ export default function Footer() {
         <div className="footer-column">
           <h4>About Us</h4>
           <ul>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Press Releases</a></li>
-            <li><a href="#">Amazon Science</a></li>
+            <li><button className="link-button" onClick={() => alert('Navigate to Careers')}>Careers</button></li>
+            <li><button className="link-button" onClick={() => alert('Navigate to Press Releases')}>Press Releases</button></li>
+            <li><button className="link-button" onClick={() => alert('Navigate to Amazon Science')}>Amazon Science</button></li>
           </ul>
         </div>
         <div className="footer-column">
           <h4>Connect with Us</h4>
           <ul>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">Instagram</a></li>
+            <li><button className="link-button" onClick={() => alert('Navigate to Facebook')}>Facebook</button></li>
+            <li><button className="link-button" onClick={() => alert('Navigate to Twitter')}>Twitter</button></li>
+            <li><button className="link-button" onClick={() => alert('Navigate to Instagram')}>Instagram</button></li>
           </ul>
         </div>
         <div className="footer-column">
           <h4>Help</h4>
           <ul>
-            <li><a href="#">Your Account</a></li>
-            <li><a href="#">Returns Centre</a></li>
-            <li><a href="#">Help</a></li>
+            <li><button className="link-button" onClick={() => alert('Navigate to Your Account')}>Your Account</button></li>
+            <li><button className="link-button" onClick={() => alert('Navigate to Returns Centre')}>Returns Centre</button></li>
+            <li><button className="link-button" onClick={() => alert('Navigate to Help')}>Help</button></li>
           </ul>
         </div>
       </div>
@@ -50,9 +50,9 @@ export default function Footer() {
       <div className="footer-bottom">
         <span>© 2023-{new Date().getFullYear()}, Amazon.com, Inc. or its affiliates</span>
         <ul>
-          <li><a href="#">Conditions of Use</a></li>
-          <li><a href="#">Privacy Notice</a></li>
-          <li><a href="#">Interest-Based Ads</a></li>
+          <li><button className="link-button" onClick={() => alert('Navigate to Conditions of Use')}>Conditions of Use</button></li>
+          <li><button className="link-button" onClick={() => alert('Navigate to Privacy Notice')}>Privacy Notice</button></li>
+          <li><button className="link-button" onClick={() => alert('Navigate to Interest-Based Ads')}>Interest-Based Ads</button></li>
         </ul>
       </div>
     </div>

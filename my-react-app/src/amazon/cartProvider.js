@@ -8,7 +8,8 @@ export default function CartProvider({ children }) {
   const [checkoutItems, setCheckoutItems] = useState([]);
   const [currentQuantity, setCurrentQuantity] = useState(Number(0));
   const [sortedData, setSortedData] = useState(data.Grocery);
-  const [first, setFirst] = useState("");
+  const [cachedLowToHigh, setCachedLowToHigh] = useState(null);
+  const [initialCartState, setInitialCartState] = useState("");
   const [updatedCartItems, setUpdatedCartItems] = useState([]);
   const [success, setSuccess] = useState(false);
 
@@ -18,13 +19,13 @@ export default function CartProvider({ children }) {
   }, [cartItems]);
 
   const addToCart = (item) => {
-    let Qtycount;
+    let Qtycount = 0;
     const index = cartItems?.findIndex((cartItem) => cartItem.id === item.id);
     if (index !== -1) {
-      if (first.length > 0 && updatedCartItems.length > 0) {
-        Qtycount = (first[index]?.Qty || 0) + Number(item.Qty);
-        const firstItems = [...first];
-        firstItems[index].Qty = Qtycount;
+      if (Array.isArray(initialCartState) && Array.isArray(updatedCartItems) && initialCartState.length > 0 && updatedCartItems.length > 0) {
+        Qtycount = (initialCartState[index]?.Qty || 0) + Number(item.Qty);
+        const initialCartItems = [...initialCartState];
+        initialCartItems[index].Qty = Qtycount;
         if (Qtycount <= item.TQty) {
           const updatedItems = [...updatedCartItems];
           updatedItems[index].Qty = Qtycount;
@@ -33,19 +34,19 @@ export default function CartProvider({ children }) {
       }
       if (Qtycount > item.TQty) {
         alert("item is out of stock");
-        setCartItems(first);
+        setCartItems(initialCartState);
       }
     } else {
       setCartItems([...cartItems, { ...item }]);
-      setFirst([...first, { ...item }]);
+      setInitialCartState([...initialCartState, { ...item }]);
       setUpdatedCartItems([...updatedCartItems, { ...item }]);
     }
-    if (updatedCartItems.length > 0 && updatedCartItems[index]?.Qty <= item.TQty) {
+    if (index !== -1 && updatedCartItems.length > 0 && updatedCartItems[index]?.Qty <= item.TQty) {
         setCartItems(updatedCartItems);
     }
 
     if (success) {
-      setFirst([]);
+      setInitialCartState([]);
       setUpdatedCartItems([]);
       setSuccess(false);
     }
@@ -82,8 +83,13 @@ export default function CartProvider({ children }) {
   };
 
   const handleLowToHigh = () => {
-    const sortedItems = [...sortedData].sort((a, b) => a.Price - b.Price);
-    setSortedData(sortedItems);
+    if (!cachedLowToHigh) {
+      const sortedItems = [...sortedData].sort((a, b) => a.Price - b.Price);
+      setCachedLowToHigh(sortedItems);
+      setSortedData(sortedItems);
+    } else {
+      setSortedData(cachedLowToHigh);
+    }
   };
 
   const handleHighToLow = () => {

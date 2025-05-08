@@ -1,55 +1,63 @@
 import React, { useEffect } from "react";
 import { useCart } from "./cartProvider";
 import { useNavigate } from "react-router-dom";
-import DeleteIcon from "@mui/icons-material/Delete";
 import {
   BUY_NOW_TITLE,
   CART_TITLE,
   CART_MESSAGE,
-  QTY_TITLE,
   TOTAL_TITLE,
 } from "./appDefault";
+import {
+  updateItemQuantity,
+  decrementOrRemoveItem,
+  removeItemById,
+  persistToSession,
+  loadFromSession,
+} from "./cartUtils";
+import CartItemCard from "./cartItemCard";
 
 const Cart = () => {
   const { calculateTotal, buyNow, cartItems, setCartItems } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedCartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
-    setCartItems(storedCartItems);
+    setCartItems(loadFromSession("cartItems"));
   }, [setCartItems]);
 
+  const handleDeleteItem = (id) => {
+    const updatedCartItems = decrementOrRemoveItem(cartItems, id);
+    setCartItems(updatedCartItems);
+    persistToSession("cartItems", updatedCartItems);
+  };
+
+  const handleDelete = (id) => {
+    const updatedCartItems = removeItemById(cartItems, id);
+    setCartItems(updatedCartItems);
+    persistToSession("cartItems", updatedCartItems);
+  };
+
+  const handleQuantityChange = (id, newQuantity) => {
+    if (newQuantity === "0") {
+      handleDelete(id);
+    } else {
+      const updatedCartItems = updateItemQuantity(cartItems, id, newQuantity);
+      setCartItems(updatedCartItems);
+      persistToSession("cartItems", updatedCartItems);
+    }
+  };
+
   const handleBuyNow = () => {
-    if (cartItems.length === 0 || cartItems.every(item => item.Qty <= 0)) {
+    if (cartItems.length === 0 || cartItems.every((item) => item.Qty <= 0)) {
       alert("Quantity is not selected");
       return;
     }
 
-    cartItems.forEach(item => {
+    cartItems.forEach((item) => {
       if (item.Qty > 0) {
         buyNow(item);
         navigate(`/checkout`, { state: item });
       }
     });
-  };
-
-  const handleDeleteItem = (id) => {
-    const updatedCartItems = cartItems.filter(item => item.id !== id);
-    setCartItems(updatedCartItems);
-    sessionStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-  };
-
-  const handleQuantityChange = (id, newQuantity) => {
-    const updatedCartItems = cartItems.map(item =>
-      item.id === id ? { ...item, Qty: Number(newQuantity) } : item
-    );
-
-    if (newQuantity === "0") {
-      handleDeleteItem(id);
-    } else {
-      setCartItems(updatedCartItems);
-      sessionStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    }
   };
 
   const totalItemCount = cartItems.reduce((total, item) => total + item.Qty, 0);
@@ -63,67 +71,24 @@ const Cart = () => {
       ) : (
         <div>
           {cartItems.map((item) => (
-            <div key={item.id} className="shopping-cart-items">
-              <div>
-                <a target="_blank" rel="noopener noreferrer" href="##">
-                  <img src={item.image} alt={item.title} width="180" height="180" />
-                </a>
-              </div>
-              <ul className="cart-list">
-                <li>
-                  <span>
-                    <a target="_blank" rel="noopener noreferrer" href="##">
-                      <span className="cart-title">{item.title}</span>
-                    </a>
-                  </span>
-                </li>
-                <div>
-                  <span className="cart-title cart-title-price">
-                    <span className="list-item">₹</span>{item.Price}.00
-                  </span>
-                </div>
-                <li>
-                  <span className="list-item">
-                    {item.TQty === 0 ? (
-                      <span className="list-item list-item-color-danger">Out of stock</span>
-                    ) : (
-                      <span className="list-item list-item-color-success">In stock</span>
-                    )}
-                  </span>
-                </li>
-                <li>
-                  <span className="list-item">
-                    {item.Price >= 500 ? 'Eligible for FREE Shipping' : 'Not Eligible for FREE Shipping'}
-                  </span>
-                </li>
-              </ul>
-              <div>
-                <label>
-                  {QTY_TITLE}
-                  <select
-                    value={item.Qty}
-                    onChange={(e) => handleQuantityChange(item.id, e.target.value)}
-                  >
-                    {[...Array(Math.max(item.TQty || 0, 0) + 1).keys()].map((q) => (
-                      <option key={q} value={q}>
-                        {q === 0 ? "0 (del)" : q}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <button onClick={() => handleDeleteItem(item.id)}>
-                  <DeleteIcon />
-                </button>
-              </div>
-            </div>
+            <CartItemCard
+              key={item.id}
+              item={item}
+              onQuantityChange={handleQuantityChange}
+              onDecrement={handleDeleteItem}
+              onDelete={handleDelete}
+              showStock={true}
+              showShipping={true}
+            />
           ))}
           <div className="total">
             <div className="subtotal">
               <span className="cart-title">
-                {TOTAL_TITLE} ({totalItemCount} {itemText}):{' '}
+                {TOTAL_TITLE} ({totalItemCount} {itemText}):{" "}
               </span>
               <span className="cart-title list-text-bold cart-title-price">
-                <span className="list-item">₹</span>{calculateTotal(cartItems)}.00
+                <span className="list-item">₹</span>
+                {calculateTotal(cartItems)}.00
               </span>
             </div>
             <button onClick={handleBuyNow} className="btn">
