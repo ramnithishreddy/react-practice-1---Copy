@@ -6,11 +6,8 @@ const CartContext = createContext();
 export default function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [checkoutItems, setCheckoutItems] = useState([]);
-  const [currentQuantity, setCurrentQuantity] = useState(Number(0));
+  const [currentQuantity, setCurrentQuantity] = useState(0);
   const [sortedData, setSortedData] = useState(data.Grocery);
-  const [cachedLowToHigh, setCachedLowToHigh] = useState(null);
-  const [initialCartState, setInitialCartState] = useState("");
-  const [updatedCartItems, setUpdatedCartItems] = useState([]);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -19,35 +16,25 @@ export default function CartProvider({ children }) {
   }, [cartItems]);
 
   const addToCart = (item) => {
-    let Qtycount = 0;
-    const index = cartItems?.findIndex((cartItem) => cartItem.id === item.id);
+    const index = cartItems.findIndex((cartItem) => cartItem.id === item.id);
+
     if (index !== -1) {
-      if (Array.isArray(initialCartState) && Array.isArray(updatedCartItems) && initialCartState.length > 0 && updatedCartItems.length > 0) {
-        Qtycount = (initialCartState[index]?.Qty || 0) + Number(item.Qty);
-        const initialCartItems = [...initialCartState];
-        initialCartItems[index].Qty = Qtycount;
-        if (Qtycount <= item.TQty) {
-          const updatedItems = [...updatedCartItems];
-          updatedItems[index].Qty = Qtycount;
-          setUpdatedCartItems(updatedItems);
-        }
+      const updatedItems = [...cartItems];
+      const newQty = updatedItems[index].Qty + item.Qty;
+
+      if (newQty > item.TQty) {
+        alert("Item is out of stock");
+        return;
       }
-      if (Qtycount > item.TQty) {
-        alert("item is out of stock");
-        setCartItems(initialCartState);
-      }
+
+      updatedItems[index].Qty = newQty;
+      setCartItems(updatedItems);
     } else {
       setCartItems([...cartItems, { ...item }]);
-      setInitialCartState([...initialCartState, { ...item }]);
-      setUpdatedCartItems([...updatedCartItems, { ...item }]);
-    }
-    if (index !== -1 && updatedCartItems.length > 0 && updatedCartItems[index]?.Qty <= item.TQty) {
-        setCartItems(updatedCartItems);
     }
 
     if (success) {
-      setInitialCartState([]);
-      setUpdatedCartItems([]);
+      setCartItems([]);
       setSuccess(false);
     }
   };
@@ -58,44 +45,39 @@ export default function CartProvider({ children }) {
     );
     setCartItems(updatedItems);
   };
+
   const buyNow = (item) => {
     const existingItem = checkoutItems.find(
       (checkoutItem) => checkoutItem.id === item.id
     );
+
     if (existingItem) {
       setCheckoutItems((prevItems) =>
         prevItems.map((checkoutItem) =>
           checkoutItem.id === item.id
-            ? { ...checkoutItem, Qty: checkoutItem.Qty + 1 }
+            ? { ...checkoutItem, Qty: checkoutItem.Qty + item.Qty }
             : checkoutItem
         )
       );
     } else {
-      setCheckoutItems((prevItems) => [
-        ...prevItems,
-        { ...item, Qty: item.Qty },
-      ]);
+      setCheckoutItems((prevItems) => [...prevItems, { ...item }]);
     }
   };
 
   const calculateTotal = (items) => {
-    return items?.reduce((total, item) => total + item.Price * item.Qty, 0);
+    return items.reduce((total, item) => total + item.Price * item.Qty, 0);
   };
 
   const handleLowToHigh = () => {
-    if (!cachedLowToHigh) {
-      const sortedItems = [...sortedData].sort((a, b) => a.Price - b.Price);
-      setCachedLowToHigh(sortedItems);
-      setSortedData(sortedItems);
-    } else {
-      setSortedData(cachedLowToHigh);
-    }
+    const sortedItems = [...data.Grocery].sort((a, b) => a.Price - b.Price);
+    setSortedData(sortedItems);
   };
 
   const handleHighToLow = () => {
-    const sortedItems = [...sortedData].sort((a, b) => b.Price - a.Price);
+    const sortedItems = [...data.Grocery].sort((a, b) => b.Price - a.Price);
     setSortedData(sortedItems);
   };
+
   return (
     <CartContext.Provider
       value={{
