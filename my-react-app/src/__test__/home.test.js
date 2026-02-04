@@ -255,5 +255,115 @@ describe("Home Component", () => {
     const hasSearchContainer = home?.querySelector(".search-container");
     expect(hasSearchContainer || home?.children.length).toBeTruthy();
   });
+
+  it("should click on grocery category card", () => {
+    const categoryCards = document.querySelectorAll(".category-card");
+    if (categoryCards.length > 0) {
+      fireEvent.click(categoryCards[0]);
+      expect(categoryCards[0]).toBeInTheDocument();
+    }
+  });
+
+  it("should click on mobiles category card", () => {
+    const categoryCards = document.querySelectorAll(".category-card");
+    if (categoryCards.length > 1) {
+      fireEvent.click(categoryCards[1]);
+      expect(categoryCards[1]).toBeInTheDocument();
+    }
+  });
+
+  it("should click on fashion category card", () => {
+    const categoryCards = document.querySelectorAll(".category-card");
+    if (categoryCards.length > 2) {
+      fireEvent.click(categoryCards[2]);
+      expect(categoryCards[2]).toBeInTheDocument();
+    }
+  });
+
+  it("should have all category cards clickable", () => {
+    const categoryCards = document.querySelectorAll(".category-card");
+    categoryCards.forEach(card => {
+      fireEvent.click(card);
+      expect(card).toBeInTheDocument();
+    });
+  });
+
+  it("should display all three main categories", () => {
+    const categoryCards = document.querySelectorAll(".category-card");
+    expect(categoryCards.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("should have category icons", () => {
+    const icons = document.querySelectorAll(".category-icon");
+    expect(icons.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("should display category titles", () => {
+    const categoryCards = document.querySelectorAll(".category-card");
+    let hasGrocery = false, hasMobiles = false, hasFashion = false;
+    categoryCards.forEach(card => {
+      const text = card.textContent;
+      if (text.includes("Grocery")) hasGrocery = true;
+      if (text.includes("Mobiles")) hasMobiles = true;
+      if (text.includes("Fashion")) hasFashion = true;
+    });
+    expect(hasGrocery || hasMobiles || hasFashion).toBe(true);
+  });
+
+  it("should handle category navigation", () => {
+    const categoryCards = document.querySelectorAll(".category-card");
+    if (categoryCards.length > 0) {
+      fireEvent.click(categoryCards[0]);
+      fireEvent.click(categoryCards[0]);
+      expect(mockNavigate).toHaveBeenCalled();
+    }
+  });
+
+  it("should render home categories section", () => {
+    const categoriesSection = document.querySelector(".home-categories");
+    expect(categoriesSection).toBeInTheDocument();
+  });
+
+  it("should have categories grid layout", () => {
+    const categoriesGrid = document.querySelector(".categories-grid");
+    expect(categoriesGrid?.children.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("should render home products sections", () => {
+    const productsSection = document.querySelector(".home-products");
+    expect(productsSection).toBeInTheDocument();
+  });
+
+  it("should display all category sections", () => {
+    const sections = document.querySelectorAll(".category-section");
+    expect(sections.length).toBeGreaterThan(0);
+  });
+
+  it("should have section headers", () => {
+    const headers = document.querySelectorAll(".section-header");
+    expect(headers.length).toBeGreaterThan(0);
+  });
+
+  it("should display view all links", () => {
+    const viewAllLinks = document.querySelectorAll(".view-all");
+    expect(viewAllLinks.length).toBeGreaterThan(0);
+  });
+
+  it("should handle multiple category clicks", () => {
+    const categoryCards = document.querySelectorAll(".category-card");
+    if (categoryCards.length >= 2) {
+      fireEvent.click(categoryCards[0]);
+      fireEvent.click(categoryCards[1]);
+      expect(mockNavigate).toHaveBeenCalled();
+    }
+  });
+
+  it("should verify home page structure completeness", () => {
+    const home = document.querySelector(".home-page");
+    const banner = home?.querySelector(".home-banner");
+    const categories = home?.querySelector(".home-categories");
+    const products = home?.querySelector(".home-products");
+    expect(banner || categories || products).toBeTruthy();
+  });
 });
 

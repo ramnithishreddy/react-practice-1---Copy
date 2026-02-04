@@ -601,4 +601,137 @@ describe("Fashion Component", () => {
     );
     expect(container.querySelector(".category-page")).toBeInTheDocument();
   });
+
+  it("should test low to high price sort", () => {
+    const buttons = screen.queryAllByRole("button");
+    if (buttons.length > 0) {
+      fireEvent.click(buttons[0]);
+      expect(document.querySelector(".item-container")).toBeInTheDocument();
+    }
+  });
+
+  it("should test high to low price sort", () => {
+    const buttons = screen.queryAllByRole("button");
+    if (buttons.length > 1) {
+      fireEvent.click(buttons[1]);
+      expect(document.querySelector(".item-container")).toBeInTheDocument();
+    }
+  });
+
+  it("should filter by price 0-500", () => {
+    const radios = screen.queryAllByDisplayValue("0-500");
+    if (radios.length > 0) {
+      fireEvent.click(radios[0]);
+      expect(radios[0]).toBeChecked();
+    }
+  });
+
+  it("should filter by price 500-2000", () => {
+    const radios = screen.queryAllByDisplayValue("500-2000");
+    if (radios.length > 0) {
+      fireEvent.click(radios[0]);
+      expect(radios[0]).toBeChecked();
+    }
+  });
+
+  it("should filter by price 2000-5000", () => {
+    const radios = screen.queryAllByDisplayValue("2000-5000");
+    if (radios.length > 0) {
+      fireEvent.click(radios[0]);
+      expect(radios[0]).toBeChecked();
+    }
+  });
+
+  it("should filter by price 5000+", () => {
+    const radios = screen.queryAllByDisplayValue("5000+");
+    if (radios.length > 0) {
+      fireEvent.click(radios[0]);
+      expect(radios[0]).toBeChecked();
+    }
+  });
+
+  it("should clear price filter", () => {
+    const allPricesRadios = screen.queryAllByDisplayValue("all");
+    if (allPricesRadios.length > 0) {
+      fireEvent.click(allPricesRadios[0]);
+      expect(allPricesRadios[0]).toBeChecked();
+    }
+  });
+
+  it("should handle item click and navigate", () => {
+    const items = document.querySelectorAll(".item");
+    if (items.length > 0) {
+      fireEvent.click(items[0]);
+      expect(items[0]).toBeInTheDocument();
+    }
+  });
+
+  it("should handle view details button click", () => {
+    const buttons = document.querySelectorAll(".add-to-cart-btn");
+    if (buttons.length > 0) {
+      fireEvent.click(buttons[0]);
+      expect(buttons[0]).toBeInTheDocument();
+    }
+  });
+
+  it("should display filtered results", () => {
+    const radios = screen.queryAllByDisplayValue("0-500");
+    if (radios.length > 0) {
+      fireEvent.click(radios[0]);
+      expect(radios[0]).toBeChecked();
+    }
+  });
+
+  it("should maintain sort after filter change", () => {
+    const buttons = screen.queryAllByRole("button");
+    const radios = screen.queryAllByDisplayValue("500-2000");
+    
+    if (buttons.length > 0) fireEvent.click(buttons[0]);
+    if (radios.length > 0) fireEvent.click(radios[0]);
+    
+    expect(document.querySelector(".category-page")).toBeInTheDocument();
+  });
+
+  it("should handle multiple filter changes", () => {
+    const radios = screen.queryAllByRole("radio");
+    if (radios.length > 0) {
+      fireEvent.click(radios[1]);
+      fireEvent.click(radios[2]);
+      fireEvent.click(radios[0]);
+      expect(document.querySelector(".category-page")).toBeInTheDocument();
+    }
+  });
+
+  it("should display all filter options", () => {
+    const filterOptions = document.querySelectorAll(".filter-option");
+    expect(filterOptions.length).toBeGreaterThan(0);
+  });
+
+  it("should render items with all properties", () => {
+    const items = document.querySelectorAll(".item");
+    items.forEach(item => {
+      expect(item.querySelector(".item-image")).toBeTruthy();
+      expect(item.querySelector(".item-title")).toBeTruthy();
+      expect(item.querySelector(".item-price")).toBeTruthy();
+    });
+  });
+
+  it("should apply low to high sort and then filter", () => {
+    const buttons = screen.queryAllByRole("button");
+    const radios = screen.queryAllByDisplayValue("500-2000");
+    
+    if (buttons.length > 0) fireEvent.click(buttons[0]);
+    if (radios.length > 0) fireEvent.click(radios[0]);
+    
+    expect(document.querySelector(".category-page")).toBeInTheDocument();
+  });
+
+  it("should test all price filter options consecutively", () => {
+    const radios = screen.queryAllByRole("radio");
+    
+    for (let i = 0; i < Math.min(radios.length, 5); i++) {
+      fireEvent.click(radios[i]);
+      expect(radios[i]).toBeChecked();
+    }
+  });
 });

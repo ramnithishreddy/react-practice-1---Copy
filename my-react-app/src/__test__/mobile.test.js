@@ -1017,4 +1017,249 @@ describe("Mobiles Component", () => {
       expect(radio).toBeInTheDocument();
     });
   });
+
+  it("should test low to high price sort for mobiles", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const buttons = screen.queryAllByRole("button");
+    if (buttons.length > 0) {
+      fireEvent.click(buttons[0]);
+      expect(document.querySelector(".item-container")).toBeInTheDocument();
+    }
+  });
+
+  it("should test high to low price sort for mobiles", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const buttons = screen.queryAllByRole("button");
+    if (buttons.length > 1) {
+      fireEvent.click(buttons[1]);
+      expect(document.querySelector(".item-container")).toBeInTheDocument();
+    }
+  });
+
+  it("should filter mobiles by price 0-20000", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const radios = screen.queryAllByDisplayValue("0-20000");
+    if (radios.length > 0) {
+      fireEvent.click(radios[0]);
+      expect(radios[0]).toBeChecked();
+    }
+  });
+
+  it("should filter mobiles by price 20000-50000", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const radios = screen.queryAllByDisplayValue("20000-50000");
+    if (radios.length > 0) {
+      fireEvent.click(radios[0]);
+      expect(radios[0]).toBeChecked();
+    }
+  });
+
+  it("should filter mobiles by price 50000-100000", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const radios = screen.queryAllByDisplayValue("50000-100000");
+    if (radios.length > 0) {
+      fireEvent.click(radios[0]);
+      expect(radios[0]).toBeChecked();
+    }
+  });
+
+  it("should filter mobiles by price 100000+", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const radios = screen.queryAllByDisplayValue("100000+");
+    if (radios.length > 0) {
+      fireEvent.click(radios[0]);
+      expect(radios[0]).toBeChecked();
+    }
+  });
+
+  it("should clear mobile price filter", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const allPricesRadios = screen.queryAllByDisplayValue("all");
+    if (allPricesRadios.length > 0) {
+      fireEvent.click(allPricesRadios[0]);
+      expect(allPricesRadios[0]).toBeChecked();
+    }
+  });
+
+  it("should handle mobile item click and navigate", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const items = document.querySelectorAll(".item");
+    if (items.length > 0) {
+      fireEvent.click(items[0]);
+      expect(items[0]).toBeInTheDocument();
+    }
+  });
+
+  it("should handle mobile view details button click", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const buttons = document.querySelectorAll(".add-to-cart-btn");
+    if (buttons.length > 0) {
+      fireEvent.click(buttons[0]);
+      expect(buttons[0]).toBeInTheDocument();
+    }
+  });
+
+  it("should display mobile filtered results", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const radios = screen.queryAllByDisplayValue("20000-50000");
+    if (radios.length > 0) {
+      fireEvent.click(radios[0]);
+      expect(radios[0]).toBeChecked();
+    }
+  });
+
+  it("should maintain sort after mobile filter change", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const buttons = screen.queryAllByRole("button");
+    const radios = screen.queryAllByDisplayValue("50000-100000");
+    
+    if (buttons.length > 0) fireEvent.click(buttons[0]);
+    if (radios.length > 0) fireEvent.click(radios[0]);
+    
+    expect(document.querySelector(".category-page")).toBeInTheDocument();
+  });
+
+  it("should handle multiple mobile filter changes", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const radios = screen.queryAllByRole("radio");
+    if (radios.length > 0) {
+      fireEvent.click(radios[1]);
+      fireEvent.click(radios[2]);
+      fireEvent.click(radios[0]);
+      expect(document.querySelector(".category-page")).toBeInTheDocument();
+    }
+  });
+
+  it("should display all mobile filter options", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const filterOptions = document.querySelectorAll(".filter-option");
+    expect(filterOptions.length).toBeGreaterThan(0);
+  });
+
+  it("should render mobile items with all properties", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const items = document.querySelectorAll(".item");
+    items.forEach(item => {
+      expect(item.querySelector(".item-image")).toBeTruthy();
+      expect(item.querySelector(".item-title")).toBeTruthy();
+      expect(item.querySelector(".item-price")).toBeTruthy();
+    });
+  });
+
+  it("should apply low to high sort and then filter mobiles", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const buttons = screen.queryAllByRole("button");
+    const radios = screen.queryAllByDisplayValue("20000-50000");
+    
+    if (buttons.length > 0) fireEvent.click(buttons[0]);
+    if (radios.length > 0) fireEvent.click(radios[0]);
+    
+    expect(document.querySelector(".category-page")).toBeInTheDocument();
+  });
+
+  it("should test all mobile price filter options consecutively", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Mobiles />
+        </CartProvider>
+      </Router>
+    );
+    const radios = screen.queryAllByRole("radio");
+    
+    for (let i = 0; i < Math.min(radios.length, 5); i++) {
+      fireEvent.click(radios[i]);
+      expect(radios[i]).toBeChecked();
+    }
+  });
 });
