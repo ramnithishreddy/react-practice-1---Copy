@@ -7,14 +7,12 @@
       "Qty": 0,
       "TQty": 10,
       "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/cookie-biscuit/q/4/q/750-assorted-cookies-75g-pack-of-10-1-unibic-original-imaghw7zehvmepkd.jpeg?q=70",
-      "Tags": [
-        "Cookies",
-        "Biscuit",
-        "Snacks",
-        "Chocolate",
-        "Grocery"
-      ],
-      "Flavour": "Chocolate"
+      "Tags": ["Cookies", "Biscuit", "Snacks", "Chocolate", "Grocery"],
+      "Flavour": "Chocolate",
+      "Discount": 12,
+      "Rating": 4.3,
+      "Reviews": 1245,
+      "isPrime": true
     },
     {
       "id": 2,
@@ -23,14 +21,12 @@
       "Qty": 0,
       "TQty": 25,
       "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/cookie-biscuit/u/d/0/-original-imagrdppa8g8dbhb.jpeg?q=70",
-      "Tags": [
-        "Cookies",
-        "Biscuit",
-        "Snacks",
-        "Chocolate",
-        "Grocery"
-      ],
-      "Flavour": "Chocolate"
+      "Tags": ["Cookies", "Biscuit", "Snacks", "Chocolate", "Grocery"],
+      "Flavour": "Chocolate",
+      "Discount": 8,
+      "Rating": 4.5,
+      "Reviews": 3456,
+      "isPrime": true
     },
     {
       "id": 3,
@@ -39,12 +35,11 @@
       "Qty": 0,
       "TQty": 6,
       "image": "https://rukminim2.flixcart.com/image/416/416/jg6v24w0/washing-bar/m/g/f/na-100-surf-excel-original-imaf4hp8k57gq9k3.jpeg?q=70",
-      "Tags": [
-        "Grocery",
-        "wash Bar",
-        "cleaning",
-        "soap"
-      ]
+      "Tags": ["Grocery", "wash Bar", "cleaning", "soap"],
+      "Discount": 15,
+      "Rating": 4.2,
+      "Reviews": 876,
+      "isPrime": false
     },
     {
       "id": 4,
@@ -53,14 +48,11 @@
       "Qty": 0,
       "TQty": 25,
       "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/liquid-detergent/t/p/i/-original-imagh6swbcvhugsh.jpeg?q=70",
-      "Tags": [
-        "Grocery",
-        "wash Bar",
-        "cleaning",
-        "soap",
-        "Detergent",
-        "Powder"
-      ]
+      "Tags": ["Grocery", "wash Bar", "cleaning", "soap", "Detergent", "Powder"],
+      "Discount": 20,
+      "Rating": 4.4,
+      "Reviews": 2134,
+      "isPrime": true
     },
     {
       "id": 5,
@@ -69,10 +61,11 @@
       "Qty": 0,
       "TQty": 10,
       "image": "https://rukminim2.flixcart.com/image/416/416/jtsz3bk0/vegetable/k/y/d/5-onion-un-branded-no-whole-original-imafdsyg4ykqcyt4.jpeg?q=70",
-      "Tags": [
-        "Grocery",
-        "vegetables"
-      ]
+      "Tags": ["Grocery", "vegetables"],
+      "Discount": 5,
+      "Rating": 4.1,
+      "Reviews": 445,
+      "isPrime": false
     },
     {
       "id": 6,
@@ -81,10 +74,115 @@
       "Qty": 0,
       "TQty": 26,
       "image": "https://rukminim2.flixcart.com/image/416/416/jtsz3bk0/fruit/3/7/w/6-un-branded-whole-original-imafdsfxcufxeurw.jpeg?q=70",
-      "Tags": [
-        "Grocery",
-        "fruites"
-      ]
+      "Tags": ["Grocery", "fruites"],
+      "Discount": 10,
+      "Rating": 4.6,
+      "Reviews": 1876,
+      "isPrime": true
+    },
+    {
+      "id": 100,
+      "title": "Basmati Rice - India Gate Select (1 kg)",
+      "Price": 89,
+      "Qty": 0,
+      "TQty": 15,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/rice/g/h/q/-original-imagqz2c8hjewhdj.jpeg?q=70",
+      "Tags": ["Grocery", "Rice", "Staples"],
+      "Discount": 8,
+      "Rating": 4.5,
+      "Reviews": 2345,
+      "isPrime": true
+    },
+    {
+      "id": 101,
+      "title": "Aashirvaad Whole Wheat Flour (Atta) - 5 kg",
+      "Price": 215,
+      "Qty": 0,
+      "TQty": 20,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/flour/g/d/a/-original-imagqf4ehgqgqdhx.jpeg?q=70",
+      "Tags": ["Grocery", "Flour", "Staples"],
+      "Discount": 12,
+      "Rating": 4.4,
+      "Reviews": 1567,
+      "isPrime": true
+    },
+    {
+      "id": 102,
+      "title": "Tata Tea Premium (500 g)",
+      "Price": 185,
+      "Qty": 0,
+      "TQty": 12,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/tea/j/q/c/-original-imagr7ydh3q92wjq.jpeg?q=70",
+      "Tags": ["Grocery", "Tea", "Beverages"],
+      "Discount": 15,
+      "Rating": 4.7,
+      "Reviews": 3245,
+      "isPrime": true
+    },
+    {
+      "id": 103,
+      "title": "Nescafe Instant Coffee (50 g)",
+      "Price": 89,
+      "Qty": 0,
+      "TQty": 18,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/coffee/b/c/p/-original-imagpsfkzprnfhdt.jpeg?q=70",
+      "Tags": ["Grocery", "Coffee", "Beverages"],
+      "Discount": 10,
+      "Rating": 4.3,
+      "Reviews": 1234,
+      "isPrime": false
+    },
+    {
+      "id": 104,
+      "title": "Sunflower Oil - Fortune (1 Liter)",
+      "Price": 145,
+      "Qty": 0,
+      "TQty": 14,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/oil/d/c/t/-original-imaghk2gcwh8gf8n.jpeg?q=70",
+      "Tags": ["Grocery", "Oil", "Cooking"],
+      "Discount": 18,
+      "Rating": 4.4,
+      "Reviews": 2876,
+      "isPrime": true
+    },
+    {
+      "id": 105,
+      "title": "Britannia Milk Cookies (400 g)",
+      "Price": 45,
+      "Qty": 0,
+      "TQty": 22,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/cookie-biscuit/m/b/c/-original-imagpf2cpx8ddfxg.jpeg?q=70",
+      "Tags": ["Grocery", "Cookies", "Snacks"],
+      "Discount": 16,
+      "Rating": 4.5,
+      "Reviews": 1645,
+      "isPrime": true
+    },
+    {
+      "id": 106,
+      "title": "Chicken Breast (500g, Fresh)",
+      "Price": 299,
+      "Qty": 0,
+      "TQty": 8,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/meat-seafood/n/g/b/-original-imaghw8cbkqdfzht.jpeg?q=70",
+      "Tags": ["Grocery", "Meat", "Protein"],
+      "Discount": 22,
+      "Rating": 4.6,
+      "Reviews": 987,
+      "isPrime": true
+    },
+    {
+      "id": 107,
+      "title": "Tomatoes (1 kg, Fresh)",
+      "Price": 35,
+      "Qty": 0,
+      "TQty": 25,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/vegetable/b/o/q/-original-imaghg8cgqyhf8ew.jpeg?q=70",
+      "Tags": ["Grocery", "Vegetables", "Fresh"],
+      "Discount": 6,
+      "Rating": 4.2,
+      "Reviews": 567,
+      "isPrime": false
     }
   ],
   "Fashion": [
@@ -95,22 +193,12 @@
       "Qty": 0,
       "TQty": 8,
       "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/t-shirt/r/v/k/m-ausk0165-ausk-original-imaghu9fbhcgf2za.jpeg?q=70",
-      "Tags": [
-        "Fashion",
-        "T-Shirt",
-        "Cotton",
-        "Cotton T-shirt",
-        "Blue",
-        "Black",
-        "Men"
-      ],
-      "Colors": [
-        "Multicolour",
-        "White",
-        "Yellow",
-        "Red",
-        "Brown"
-      ]
+      "Tags": ["Fashion", "T-Shirt", "Cotton", "Cotton T-shirt", "Blue", "Black", "Men"],
+      "Colors": ["Multicolour", "White", "Yellow", "Red", "Brown"],
+      "Discount": 25,
+      "Rating": 4.2,
+      "Reviews": 1567,
+      "isPrime": true
     },
     {
       "id": 8,
@@ -119,19 +207,12 @@
       "Qty": 0,
       "TQty": 15,
       "image": "https://rukminim2.flixcart.com/image/832/832/kvzkosw0/t-shirt/s/v/9/xl-askpqrgfa85753-allen-solly-original-imag8rphhg5nxsdh.jpeg?q=70",
-      "Tags": [
-        "Fashion",
-        "T-Shirt",
-        "Cotton",
-        "Cotton T-shirt",
-        "Black",
-        "men"
-      ],
-      "Colors": [
-        "Black",
-        "Brown",
-        "Maron"
-      ]
+      "Tags": ["Fashion", "T-Shirt", "Cotton", "Cotton T-shirt", "Black", "men"],
+      "Colors": ["Black", "Brown", "Maron"],
+      "Discount": 30,
+      "Rating": 4.4,
+      "Reviews": 2345,
+      "isPrime": true
     },
     {
       "id": 9,
@@ -140,18 +221,12 @@
       "Qty": 0,
       "TQty": 6,
       "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/e/h/u/40-assfmmofh92355-allen-solly-original-imagqkhrqzgftntr.jpeg?q=70",
-      "Tags": [
-        "Fashion",
-        "Shirt",
-        "Casual shirt",
-        "Men"
-      ],
-      "Colors": [
-        "White",
-        "Brown",
-        "Black",
-        "Maron"
-      ]
+      "Tags": ["Fashion", "Shirt", "Casual shirt", "Men"],
+      "Colors": ["White", "Brown", "Black", "Maron"],
+      "Discount": 35,
+      "Rating": 4.3,
+      "Reviews": 876,
+      "isPrime": true
     },
     {
       "id": 10,
@@ -160,19 +235,12 @@
       "Qty": 0,
       "TQty": 9,
       "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/shoe/p/a/e/-original-imagf5pppqumyhq7-bb.jpeg?q=70",
-      "Tags": [
-        "Blue",
-        "Fashion",
-        "Shoes",
-        "Sneakers",
-        "Men"
-      ],
-      "Colors": [
-        "Blue",
-        "Brown",
-        "Black",
-        "Maron"
-      ]
+      "Tags": ["Blue", "Fashion", "Shoes", "Sneakers", "Men"],
+      "Colors": ["Blue", "Brown", "Black", "Maron"],
+      "Discount": 28,
+      "Rating": 4.5,
+      "Reviews": 1234,
+      "isPrime": true
     },
     {
       "id": 11,
@@ -181,19 +249,12 @@
       "Qty": 0,
       "TQty": 5,
       "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/shoe/y/2/a/-original-imagpfdvejhbdncr.jpeg?q=70",
-      "Tags": [
-        "Fashion",
-        "Shoes",
-        "Running",
-        "Men",
-        "White"
-      ],
-      "Colors": [
-        "White",
-        "Brown",
-        "Black",
-        "Maron"
-      ]
+      "Tags": ["Fashion", "Shoes", "Running", "Men", "White"],
+      "Colors": ["White", "Brown", "Black", "Maron"],
+      "Discount": 20,
+      "Rating": 4.7,
+      "Reviews": 2987,
+      "isPrime": true
     },
     {
       "id": 12,
@@ -202,17 +263,68 @@
       "Qty": 0,
       "TQty": 13,
       "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/trouser/s/w/l/-original-imaghm9bczphcx8m.jpeg?q=70",
-      "Tags": [
-        "Fashion",
-        "Cotton",
-        "Trousers",
-        "Men"
-      ],
-      "Colors": [
-        "Light Brown",
-        "Black",
-        "Maron"
-      ]
+      "Tags": ["Fashion", "Cotton", "Trousers", "Men"],
+      "Colors": ["Light Brown", "Black", "Maron"],
+      "Discount": 32,
+      "Rating": 4.4,
+      "Reviews": 1456,
+      "isPrime": true
+    },
+    {
+      "id": 108,
+      "title": "Women Slim Fit Casual Jeans (Light Blue)",
+      "Price": 899,
+      "Qty": 0,
+      "TQty": 14,
+      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/jean/v/d/e/-original-imagj4fzgzwqqfjz.jpeg?q=70",
+      "Tags": ["Fashion", "Jeans", "Women", "Denim"],
+      "Colors": ["Light Blue", "Dark Blue", "Black"],
+      "Discount": 26,
+      "Rating": 4.3,
+      "Reviews": 1834,
+      "isPrime": true
+    },
+    {
+      "id": 109,
+      "title": "Women Printed Cotton Kurta",
+      "Price": 599,
+      "Qty": 0,
+      "TQty": 18,
+      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/kurti/j/z/p/-original-imagjg8fnqrmvnvz.jpeg?q=70",
+      "Tags": ["Fashion", "Kurta", "Women", "Cotton"],
+      "Colors": ["Red", "Blue", "Green", "Yellow"],
+      "Discount": 22,
+      "Rating": 4.4,
+      "Reviews": 2145,
+      "isPrime": true
+    },
+    {
+      "id": 110,
+      "title": "Men's Formal Full Sleeve Shirt (White)",
+      "Price": 1299,
+      "Qty": 0,
+      "TQty": 10,
+      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/d/t/r/-original-imagmkq3gnvhtgz5.jpeg?q=70",
+      "Tags": ["Fashion", "Shirt", "Formal", "Men"],
+      "Colors": ["White", "Light Blue", "Light Pink"],
+      "Discount": 18,
+      "Rating": 4.5,
+      "Reviews": 1567,
+      "isPrime": true
+    },
+    {
+      "id": 111,
+      "title": "Sports Gym Wear Joggers (Black)",
+      "Price": 649,
+      "Qty": 0,
+      "TQty": 12,
+      "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/trouser/x/k/n/-original-imaghj3gzf8fcngp.jpeg?q=70",
+      "Tags": ["Fashion", "Joggers", "Sports", "Casual"],
+      "Colors": ["Black", "Grey", "Navy Blue"],
+      "Discount": 24,
+      "Rating": 4.2,
+      "Reviews": 987,
+      "isPrime": true
     }
   ],
   "Mobiles": [
@@ -223,19 +335,12 @@
       "Qty": 0,
       "TQty": 2,
       "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/e/z/n/-original-imagrggwzadhhuz7.jpeg?q=70",
-      "Tags": [
-        "Mobiles",
-        "realme",
-        "6 GB RAM",
-        "64 GB",
-        "realme C53"
-      ],
-      "Colors": [
-        "Champion Gold",
-        "Brown",
-        "Black",
-        "Sky Blue"
-      ]
+      "Tags": ["Mobiles", "realme", "6 GB RAM", "64 GB", "realme C53"],
+      "Colors": ["Champion Gold", "Brown", "Black", "Sky Blue"],
+      "Discount": 18,
+      "Rating": 4.2,
+      "Reviews": 1234,
+      "isPrime": true
     },
     {
       "id": 14,
@@ -244,18 +349,12 @@
       "Qty": 0,
       "TQty": 3,
       "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/8/f/8/c53-rmx3762-realme-original-imagrffga9srfh7v.jpeg?q=70",
-      "Tags": [
-        "Mobiles",
-        "realme",
-        "6 GB RAM",
-        "64 GB",
-        "realme C53 Champion Black"
-      ],
-      "Colors": [
-        "Black",
-        "Brown",
-        "Red"
-      ]
+      "Tags": ["Mobiles", "realme", "6 GB RAM", "64 GB", "realme C53 Champion Black"],
+      "Colors": ["Black", "Brown", "Red"],
+      "Discount": 18,
+      "Rating": 4.3,
+      "Reviews": 2145,
+      "isPrime": true
     },
     {
       "id": 15,
@@ -264,18 +363,12 @@
       "Qty": 0,
       "TQty": 11,
       "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/j/i/k/galaxy-f14-5g-sm-e146bzggins-samsung-original-imagnzdkprfwj9hv.jpeg?q=70",
-      "Tags": [
-        "Mobiles",
-        "SAMSUNG",
-        "6 GB RAM",
-        "128 GB",
-        "SAMSUNG Galaxy F14 5G Green"
-      ],
-      "Colors": [
-        "Green",
-        "Brown",
-        "Black"
-      ]
+      "Tags": ["Mobiles", "SAMSUNG", "6 GB RAM", "128 GB", "SAMSUNG Galaxy F14 5G Green"],
+      "Colors": ["Green", "Brown", "Black"],
+      "Discount": 22,
+      "Rating": 4.4,
+      "Reviews": 1876,
+      "isPrime": true
     },
     {
       "id": 16,
@@ -284,18 +377,12 @@
       "Qty": 0,
       "TQty": 4,
       "image": "https://rukminim2.flixcart.com/image/416/416/jll6xzk0/mobile/g/e/r/honor-7s-na-original-imaf8zwgyjgys8gt.jpeg?q=70",
-      "Tags": [
-        "Mobiles",
-        "Honor",
-        "2 GB RAM",
-        "16 GB",
-        "Honor 7S"
-      ],
-      "Colors": [
-        "Gold",
-        "Brown",
-        "Black"
-      ]
+      "Tags": ["Mobiles", "Honor", "2 GB RAM", "16 GB", "Honor 7S"],
+      "Colors": ["Gold", "Brown", "Black"],
+      "Discount": 15,
+      "Rating": 4.1,
+      "Reviews": 987,
+      "isPrime": false
     },
     {
       "id": 17,
@@ -304,18 +391,12 @@
       "Qty": 0,
       "TQty": 7,
       "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/k/u/n/-original-imagzjhwtfthcmzz.jpeg?q=70",
-      "Tags": [
-        "Mobiles",
-        "vivo",
-        "6 GB RAM",
-        "128 GB",
-        "vivo T2x 5G"
-      ],
-      "Colors": [
-        "Marine Blue",
-        "White",
-        "Black"
-      ]
+      "Tags": ["Mobiles", "vivo", "6 GB RAM", "128 GB", "vivo T2x 5G"],
+      "Colors": ["Marine Blue", "White", "Black"],
+      "Discount": 20,
+      "Rating": 4.5,
+      "Reviews": 2567,
+      "isPrime": true
     },
     {
       "id": 18,
@@ -324,17 +405,68 @@
       "Qty": 0,
       "TQty": 5,
       "image": "https://rukminim2.flixcart.com/image/416/416/k9loccw0/mobile/6/b/z/apple-iphone-se-mxd12hn-a-original-imafrcqf9nze6evk.jpeg?q=70",
-      "Tags": [
-        "Mobiles",
-        "APPLE",
-        "4 GB RAM",
-        "256 GB",
-        "APPLE iPhone SE"
-      ],
-      "Colors": [
-        "White",
-        "Green"
-      ]
+      "Tags": ["Mobiles", "APPLE", "4 GB RAM", "256 GB", "APPLE iPhone SE"],
+      "Colors": ["White", "Green"],
+      "Discount": 12,
+      "Rating": 4.7,
+      "Reviews": 3456,
+      "isPrime": true
+    },
+    {
+      "id": 112,
+      "title": "Xiaomi Redmi Note 12 (Polar Black, 128 GB)  (6 GB RAM)",
+      "Price": 12999,
+      "Qty": 0,
+      "TQty": 9,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/p/h/b/-original-imagq8zf4ghsrwgr.jpeg?q=70",
+      "Tags": ["Mobiles", "Xiaomi", "6 GB RAM", "128 GB", "Redmi Note 12"],
+      "Colors": ["Polar Black", "Blue", "Silver"],
+      "Discount": 25,
+      "Rating": 4.4,
+      "Reviews": 2345,
+      "isPrime": true
+    },
+    {
+      "id": 113,
+      "title": "OnePlus 11 (Black, 256 GB)  (8 GB RAM)",
+      "Price": 46999,
+      "Qty": 0,
+      "TQty": 4,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/w/r/x/-original-imagm9zqkzbggfjf.jpeg?q=70",
+      "Tags": ["Mobiles", "OnePlus", "8 GB RAM", "256 GB", "OnePlus 11"],
+      "Colors": ["Black", "Green"],
+      "Discount": 16,
+      "Rating": 4.6,
+      "Reviews": 1234,
+      "isPrime": true
+    },
+    {
+      "id": 114,
+      "title": "Google Pixel 7a (Charcoal, 128 GB)  (6 GB RAM)",
+      "Price": 43999,
+      "Qty": 0,
+      "TQty": 6,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/o/a/g/-original-imagq3t4hytgfhfh.jpeg?q=70",
+      "Tags": ["Mobiles", "Google", "6 GB RAM", "128 GB", "Pixel 7a"],
+      "Colors": ["Charcoal", "Sea", "Snow"],
+      "Discount": 14,
+      "Rating": 4.7,
+      "Reviews": 1876,
+      "isPrime": true
+    },
+    {
+      "id": 115,
+      "title": "Motorola Edge 40 (Black, 256 GB)  (12 GB RAM)",
+      "Price": 29999,
+      "Qty": 0,
+      "TQty": 8,
+      "image": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/e/l/x/-original-imagpb5w8gjhg8vd.jpeg?q=70",
+      "Tags": ["Mobiles", "Motorola", "12 GB RAM", "256 GB", "Edge 40"],
+      "Colors": ["Black", "Blue"],
+      "Discount": 19,
+      "Rating": 4.5,
+      "Reviews": 1567,
+      "isPrime": true
     }
   ]
 }

@@ -21,7 +21,7 @@ const Checkout = () => {
   const [paymentInProgress, setPaymentInProgress] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const item = location.state;
+  const item = location.state || {};
 
   const handleDeleteItem = (id) => {
     const updatedCartItems = decrementOrRemoveItem(checkoutItems, id);

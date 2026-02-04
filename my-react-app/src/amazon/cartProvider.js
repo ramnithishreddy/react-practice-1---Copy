@@ -39,9 +39,9 @@ export default function CartProvider({ children }) {
     }
   };
 
-  const updateCartItems = (items, itemId) => {
+  const updateCartItems = (items, itemId, newQuantity) => {
     const updatedItems = items.map((item) =>
-      item.id === itemId ? { ...item, Qty: item.Qty } : item
+      item.id === itemId ? { ...item, Qty: newQuantity } : item
     );
     setCartItems(updatedItems);
   };

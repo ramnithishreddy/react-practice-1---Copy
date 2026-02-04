@@ -21,8 +21,11 @@ const Cart = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setCartItems(loadFromSession("cartItems"));
-  }, [setCartItems]);
+    const savedItems = loadFromSession("cartItems");
+    if (savedItems && savedItems.length > 0) {
+      setCartItems(savedItems);
+    }
+  }, []);
 
   const handleDeleteItem = (id) => {
     const updatedCartItems = decrementOrRemoveItem(cartItems, id);
