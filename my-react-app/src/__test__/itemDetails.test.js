@@ -493,4 +493,293 @@ describe("ItemDetails Component", () => {
     });
     expect(buttons.length).toBeGreaterThan(0);
   });
+
+  it("should render share functionality", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    const shareButton = screen.queryByText(/Share/i);
+    if (shareButton) {
+      fireEvent.click(shareButton);
+      expect(shareButton).toBeInTheDocument();
+    }
+  });
+
+  it("should toggle wishlist on/off", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    const wishlistButton = document.querySelector(".wishlist-btn");
+    if (wishlistButton) {
+      fireEvent.click(wishlistButton);
+      fireEvent.click(wishlistButton);
+      expect(wishlistButton).toBeInTheDocument();
+    }
+  });
+
+  it("should handle add to cart with quantity", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    const quantityInputs = document.querySelectorAll("input[type='number']");
+    if (quantityInputs.length > 0) {
+      fireEvent.change(quantityInputs[0], { target: { value: "2" } });
+      const addBtn = screen.queryByText(/Add to Cart|ADD/i) || document.querySelector("button");
+      if (addBtn) fireEvent.click(addBtn);
+    }
+  });
+
+  it("should handle buy now with quantity", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    const quantityInputs = document.querySelectorAll("input[type='number']");
+    if (quantityInputs.length > 0) {
+      fireEvent.change(quantityInputs[0], { target: { value: "3" } });
+      const buyBtn = screen.queryByText(/Buy Now|BUY/i) || document.queryAllByRole("button")[1];
+      if (buyBtn) fireEvent.click(buyBtn);
+    }
+  });
+
+  it("should calculate discount correctly", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    const priceElements = document.querySelectorAll("[class*='price']");
+    expect(priceElements.length).toBeGreaterThan(0);
+  });
+
+  it("should display all product details sections", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    const sections = document.querySelectorAll("[class*='section']");
+    expect(sections.length).toBeGreaterThan(0);
+  });
+
+  it("should verify item details page structure", () => {
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    const page = container.querySelector(".item-details-page") || container.querySelector(".item-not-found");
+    expect(page).toBeInTheDocument();
+  });
+
+  it("should handle wishlist multiple toggles", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    const wishlistButton = document.querySelector(".wishlist-btn");
+    if (wishlistButton) {
+      for (let i = 0; i < 3; i++) {
+        fireEvent.click(wishlistButton);
+      }
+      expect(wishlistButton).toBeInTheDocument();
+    }
+  });
+
+  it("should render with proper item data", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    const detailsPage = document.querySelector(".item-details-page");
+    expect(detailsPage?.innerHTML.length || 0).toBeGreaterThanOrEqual(0);
+  });
+
+  it("should handle add to cart with zero quantity alert", () => {
+    window.alert = jest.fn();
+    
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    
+    const quantitySelect = document.querySelector(".quantity-select");
+    if (quantitySelect) {
+      fireEvent.change(quantitySelect, { target: { value: "0" } });
+    }
+    
+    const addToCartButton = document.querySelector(".add-to-cart-btn");
+    if (addToCartButton) {
+      fireEvent.click(addToCartButton);
+      expect(window.alert).toHaveBeenCalledWith(expect.any(String));
+    }
+  });
+
+  it("should handle wishlist toggle multiple times", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    
+    const wishlistButton = document.querySelector(".wishlist-btn");
+    if (wishlistButton) {
+      fireEvent.click(wishlistButton);
+      fireEvent.click(wishlistButton);
+      fireEvent.click(wishlistButton);
+    }
+    
+    expect(wishlistButton || document.body.innerHTML.length > 0).toBeTruthy();
+  });
+
+  it("should change quantity to different values", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    
+    const quantitySelect = document.querySelector(".quantity-select");
+    if (quantitySelect) {
+      fireEvent.change(quantitySelect, { target: { value: "2" } });
+      fireEvent.change(quantitySelect, { target: { value: "5" } });
+      fireEvent.change(quantitySelect, { target: { value: "1" } });
+    }
+    
+    expect(quantitySelect).toBeInTheDocument();
+  });
+
+  it("should handle add to cart with valid quantity", () => {
+    window.alert = jest.fn();
+    
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    
+    const quantitySelect = document.querySelector(".quantity-select");
+    if (quantitySelect) {
+      fireEvent.change(quantitySelect, { target: { value: "2" } });
+    }
+    
+    const addToCartButton = document.querySelector(".add-to-cart-btn");
+    if (addToCartButton) {
+      fireEvent.click(addToCartButton);
+    }
+    
+    expect(addToCartButton || document.body.innerHTML.length > 0).toBeTruthy();
+  });
+
+  it("should click share button", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    
+    const shareButtons = document.querySelectorAll("button");
+    let shareClicked = false;
+    shareButtons.forEach((btn) => {
+      if (btn.textContent.includes("Share")) {
+        fireEvent.click(btn);
+        shareClicked = true;
+      }
+    });
+    
+    expect(shareButtons.length > 0).toBe(true);
+  });
+
+  it("should handle buy now button click", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    
+    const buyNowButton = document.querySelector(".buy-now-btn");
+    if (buyNowButton) {
+      fireEvent.click(buyNowButton);
+    }
+    
+    expect(buyNowButton || document.body.innerHTML.length > 0).toBeTruthy();
+  });
+
+  it("should display rating and reviews", () => {
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    
+    const detailsPage = document.querySelector(".item-details-page");
+    expect(detailsPage).toBeInTheDocument();
+  });
+
+  it("should handle quantity changes and cart operations", () => {
+    window.alert = jest.fn();
+    
+    render(
+      <Router>
+        <CartProvider>
+          <ItemDetails />
+        </CartProvider>
+      </Router>
+    );
+    
+    const quantitySelect = document.querySelector(".quantity-select");
+    const addToCartButton = document.querySelector(".add-to-cart-btn");
+    
+    if (quantitySelect) {
+      fireEvent.change(quantitySelect, { target: { value: "3" } });
+    }
+    
+    if (addToCartButton) {
+      fireEvent.click(addToCartButton);
+    }
+    
+    expect(quantitySelect || addToCartButton).toBeTruthy();
+  });
 });

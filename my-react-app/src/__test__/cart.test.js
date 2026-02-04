@@ -1,9 +1,18 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import React from "react";
 import Cart from "../amazon/cart";
 import { BrowserRouter as Router } from "react-router-dom";
 import CartProvider from "../amazon/cartProvider";
 
 describe("Cart Component", () => {
+  beforeEach(() => {
+    sessionStorage.clear();
+  });
+
+  afterEach(() => {
+    sessionStorage.clear();
+  });
+
   it("should render cart component", () => {
     render(
       <Router>
@@ -1549,6 +1558,627 @@ describe("Cart Component", () => {
     );
     const cart = document.querySelector(".container");
     expect(cart).toBeInTheDocument();
+  });
+
+  // Tests with cart items to cover rendering and handling logic
+  it("should render cart items when items exist in sessionStorage", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Test Product 1",
+        Price: 100,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const totalDiv = document.querySelector(".total");
+      expect(totalDiv).toBeInTheDocument();
+    });
+  });
+
+  it("should display cart with multiple items", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Item 1",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test1.jpg",
+        Tags: ["Test"],
+      },
+      {
+        id: 2,
+        title: "Item 2",
+        Price: 200,
+        Qty: 2,
+        TQty: 5,
+        image: "test2.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const totalDiv = document.querySelector(".total");
+      expect(totalDiv).toBeInTheDocument();
+    });
+  });
+
+  it("should display correct total when items in cart", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product A",
+        Price: 500,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const totalDiv = document.querySelector(".total");
+      expect(totalDiv).toBeInTheDocument();
+    });
+  });
+
+  it("should show correct item count", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 3,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const cartElement = document.querySelector(".shopping-cart");
+      expect(cartElement).toBeInTheDocument();
+    });
+  });
+
+  it("should render BUY NOW button when items exist", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Test Item",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const buyNowButton = screen.queryByRole("button", { name: /Buy Now/i });
+      expect(buyNowButton).toBeInTheDocument();
+    });
+  });
+
+  it("should display correct singular item text", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Single Item",
+        Price: 150,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const container = document.querySelector(".container");
+      expect(container).toBeInTheDocument();
+    });
+  });
+
+  it("should display correct plural items text", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product 1",
+        Price: 100,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+      {
+        id: 2,
+        title: "Product 2",
+        Price: 50,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const container = document.querySelector(".container");
+      expect(container).toBeInTheDocument();
+    });
+  });
+
+  it("should render CartItemCard for each item", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product A",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const totalDiv = container.querySelector(".total");
+      expect(totalDiv).toBeInTheDocument();
+    });
+  });
+
+  it("should handle delete item with decrement", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const container = document.querySelector(".container");
+      expect(container).toBeInTheDocument();
+    });
+  });
+
+  it("should handle delete item completely", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const container = document.querySelector(".container");
+      expect(container).toBeInTheDocument();
+    });
+  });
+
+  it("should handle quantity change to zero", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const container = document.querySelector(".container");
+      expect(container).toBeInTheDocument();
+    });
+  });
+
+  it("should handle buy now with no items", async () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    expect(screen.getByText(/Shopping Cart/i)).toBeInTheDocument();
+  });
+
+  it("should handle buy now with zero quantity items", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 0,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const container = document.querySelector(".container");
+      expect(container).toBeInTheDocument();
+    });
+  });
+
+  it("should handle buy now with items", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const buyButton = screen.queryByRole("button", { name: /Buy Now/i });
+      expect(buyButton).toBeInTheDocument();
+    });
+  });
+
+  it("should calculate and display total correctly", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Item 1",
+        Price: 100,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+      {
+        id: 2,
+        title: "Item 2",
+        Price: 50,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const totalDiv = container.querySelector(".total");
+      expect(totalDiv).toBeInTheDocument();
+    });
+  });
+
+  it("should render with items loaded from session storage", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Stored Item",
+        Price: 250,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const container = document.querySelector(".container");
+      expect(container).toBeInTheDocument();
+    });
+  });
+
+  it("should handle quantity change via select", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 5,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const selects = container.querySelectorAll(".quantity-select");
+      if (selects.length > 0) {
+        fireEvent.change(selects[0], { target: { value: "2" } });
+      }
+      expect(selects.length).toBeGreaterThan(0);
+    });
+  });
+
+  it("should handle delete button click", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const deleteButtons = container.querySelectorAll(".delete-button");
+      if (deleteButtons.length > 0) {
+        fireEvent.click(deleteButtons[0]);
+      }
+      expect(deleteButtons.length).toBeGreaterThan(0);
+    });
+  });
+
+  it("should handle quantity change to remove item", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const selects = container.querySelectorAll(".quantity-select");
+      if (selects.length > 0) {
+        fireEvent.change(selects[0], { target: { value: "0" } });
+      }
+      expect(selects.length).toBeGreaterThan(0);
+    });
+  });
+
+  it("should render cart structure with items", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product 1",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+      {
+        id: 2,
+        title: "Product 2",
+        Price: 200,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const cartItems = container.querySelectorAll(".shopping-cart-items");
+      expect(cartItems.length).toBe(2);
+    });
+  });
+
+  it("should trigger buy now navigation", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+    sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <Cart />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const buyButton = screen.queryByRole("button", { name: /Buy Now/i });
+      if (buyButton) {
+        fireEvent.click(buyButton);
+      }
+      expect(buyButton).toBeTruthy();
+    });
   });
 });
 

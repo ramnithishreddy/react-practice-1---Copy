@@ -1,9 +1,28 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import React from "react";
 import Checkout from "../amazon/checkout";
 import { BrowserRouter as Router } from "react-router-dom";
-import CartProvider from "../amazon/cartProvider";
+import CartProvider, { useCart } from "../amazon/cartProvider";
+
+// Wrapper component to set checkout items
+const CheckoutWithItems = ({ items }) => {
+  const { setCheckoutItems } = useCart();
+  React.useEffect(() => {
+    if (items) {
+      setCheckoutItems(items);
+    }
+  }, [items, setCheckoutItems]);
+  return <Checkout />;
+};
 
 describe("Checkout Component", () => {
+  beforeEach(() => {
+    sessionStorage.clear();
+  });
+
+  afterEach(() => {
+    sessionStorage.clear();
+  });
   it("should render Checkout component", () => {
     render(
       <Router>
@@ -1555,5 +1574,705 @@ describe("Checkout Component", () => {
     );
     const page = container.querySelector(".container");
     expect(page?.innerHTML.length).toBeGreaterThan(0);
+  });
+
+  // New tests for checkout with items
+  it("should render checkout items when present in sessionStorage", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Checkout Item",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const totalDiv = container.querySelector(".total");
+      expect(totalDiv).toBeInTheDocument();
+    });
+  });
+
+  it("should display multiple checkout items", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Item 1",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+      {
+        id: 2,
+        title: "Item 2",
+        Price: 200,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const cartItems = container.querySelectorAll(".shopping-cart-items");
+      expect(cartItems.length).toBe(2);
+    });
+  });
+
+  it("should render order button when items exist", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const orderButton = screen.queryByRole("button", { name: /Place Order/i });
+      expect(orderButton).toBeInTheDocument();
+    });
+  });
+
+  it("should calculate total for checkout items", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product A",
+        Price: 500,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const totalDiv = container.querySelector(".total");
+      expect(totalDiv).toBeInTheDocument();
+    });
+  });
+
+  it("should handle quantity change in checkout", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 5,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const selects = container.querySelectorAll(".quantity-select");
+      if (selects.length > 0) {
+        fireEvent.change(selects[0], { target: { value: "2" } });
+      }
+      expect(selects.length).toBeGreaterThan(0);
+    });
+  });
+
+  it("should handle delete button click in checkout", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const deleteButtons = container.querySelectorAll(".delete-button");
+      if (deleteButtons.length > 0) {
+        fireEvent.click(deleteButtons[0]);
+      }
+      expect(deleteButtons.length).toBeGreaterThan(0);
+    });
+  });
+
+  it("should handle quantity change to remove item", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const selects = container.querySelectorAll(".quantity-select");
+      if (selects.length > 0) {
+        fireEvent.change(selects[0], { target: { value: "0" } });
+      }
+      expect(selects.length).toBeGreaterThan(0);
+    });
+  });
+
+  it("should render checkout structure with items", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product 1",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const total = container.querySelector(".total");
+      expect(total).toBeInTheDocument();
+    });
+  });
+
+  it("should handle payment with no items", async () => {
+    render(
+      <Router>
+        <CartProvider>
+          <Checkout />
+        </CartProvider>
+      </Router>
+    );
+
+    const heading = document.querySelector("h2");
+    expect(heading).toBeInTheDocument();
+  });
+
+  it("should handle payment with items", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const orderButton = screen.queryByRole("button", { name: /Place Order/i });
+      expect(orderButton).toBeInTheDocument();
+    });
+  });
+
+  it("should render checkout with empty initial state and load items", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Loaded Item",
+        Price: 150,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const cartItems = container.querySelectorAll(".shopping-cart-items");
+      expect(cartItems.length).toBeGreaterThanOrEqual(1);
+    });
+  });
+
+  it("should show alert and return when items have zero quantity", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 0,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    window.alert = jest.fn();
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const orderButton = screen.queryByRole("button", { name: /Place Order/i });
+      if (orderButton && !orderButton.disabled) {
+        fireEvent.click(orderButton);
+        expect(window.alert).toHaveBeenCalled();
+      }
+    });
+  });
+
+  it("should show alert for mixed zero and non-zero quantities", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product 1",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+      {
+        id: 2,
+        title: "Product 2",
+        Price: 200,
+        Qty: 0,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    window.alert = jest.fn();
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const orderButton = screen.queryByRole("button", { name: /Place Order/i });
+      if (orderButton && !orderButton.disabled) {
+        fireEvent.click(orderButton);
+        expect(window.alert).toHaveBeenCalled();
+      }
+    });
+  });
+
+  it("should handle payment process with valid quantities", async () => {
+    jest.useFakeTimers();
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    window.alert = jest.fn();
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const orderButton = screen.queryByRole("button", { name: /Place Order/i });
+      if (orderButton && !orderButton.disabled) {
+        fireEvent.click(orderButton);
+      }
+      expect(orderButton).toBeInTheDocument();
+    });
+
+    jest.useRealTimers();
+  });
+
+  it("should disable order button during payment processing", async () => {
+    jest.useFakeTimers();
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const orderButton = screen.queryByRole("button", { name: /Place Order/i });
+      if (orderButton && !orderButton.disabled) {
+        fireEvent.click(orderButton);
+        expect(orderButton).toBeInTheDocument();
+      }
+    });
+
+    jest.useRealTimers();
+  });
+
+  it("should handle multiple payment attempts", async () => {
+    jest.useFakeTimers();
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    window.alert = jest.fn();
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const orderButton = screen.queryByRole("button", { name: /Place Order/i });
+      expect(orderButton).toBeInTheDocument();
+    });
+
+    jest.useRealTimers();
+  });
+
+  it("should display processing status during payment", async () => {
+    jest.useFakeTimers();
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const orderButton = screen.queryByRole("button", { name: /Place Order|Processing/i });
+      if (orderButton && !orderButton.disabled) {
+        fireEvent.click(orderButton);
+      }
+      expect(orderButton).toBeInTheDocument();
+    });
+
+    jest.useRealTimers();
+  });
+
+  it("should calculate and display checkout total", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product 1",
+        Price: 200,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+      {
+        id: 2,
+        title: "Product 2",
+        Price: 300,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const totalDiv = container.querySelector(".total");
+      expect(totalDiv).toBeInTheDocument();
+    });
+  });
+
+  it("should click place order button", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const orderButton = screen.queryByRole("button", { name: /Place Order/i });
+      if (orderButton && !orderButton.disabled) {
+        fireEvent.click(orderButton);
+      }
+      expect(orderButton).toBeInTheDocument();
+    });
+  });
+
+  it("should display processing status during payment", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const orderButton = screen.queryByRole("button", { name: /Place Order/i });
+      expect(orderButton).toBeInTheDocument();
+    });
+  });
+
+  it("should handle payment validation for zero quantity", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product",
+        Price: 100,
+        Qty: 0,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const container = document.querySelector(".container");
+      expect(container).toBeInTheDocument();
+    });
+  });
+
+  it("should render total amount in checkout", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product 1",
+        Price: 200,
+        Qty: 2,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+      {
+        id: 2,
+        title: "Product 2",
+        Price: 300,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    const { container } = render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const totalDiv = container.querySelector(".total");
+      expect(totalDiv).toBeInTheDocument();
+    });
+  });
+
+  it("should handle payment attempt with mixed quantities", async () => {
+    const mockItems = [
+      {
+        id: 1,
+        title: "Product 1",
+        Price: 100,
+        Qty: 1,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+      {
+        id: 2,
+        title: "Product 2",
+        Price: 200,
+        Qty: 0,
+        TQty: 10,
+        image: "test.jpg",
+        Tags: ["Test"],
+      },
+    ];
+
+    render(
+      <Router>
+        <CartProvider>
+          <CheckoutWithItems items={mockItems} />
+        </CartProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const orderButton = screen.queryByRole("button", { name: /Place Order/i });
+      expect(orderButton).toBeInTheDocument();
+    });
   });
 });

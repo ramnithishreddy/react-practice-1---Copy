@@ -49,7 +49,7 @@ const SuccessPage = () => {
     });
   };
 
-  const relatedProducts = item ? getRelatedProducts(item) : [];
+  const relatedProducts = item && item.Tags ? getRelatedProducts(item.Tags) : [];
 
   return (
     <div className="success-page">
