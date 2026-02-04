@@ -42,7 +42,9 @@ export default function Nav() {
             <AccountCircleIcon className="account-icon" />
             <div>
               <span className="account-label">Hello, User</span>
-              <span className="signin-text">Sign in / Join</span>
+              <Link to="/signin" className="signin-link" onClick={() => setIsOpen(false)}>
+                Sign in / Join
+              </Link>
             </div>
           </div>
         </div>

@@ -296,6 +296,19 @@ body {
   font-weight: 600;
 }
 
+.signin-link {
+  display: block;
+  font-size: 13px;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.signin-link:hover {
+  color: #ffa500;
+}
+
 /* Navigation styles */
 .navbar {
   display: flex;

@@ -12,6 +12,8 @@ import Checkout from "./amazon/checkout";
 import Nav from "./amazon/nav";
 import Footer from "./amazon/footer";
 import SuccessPage from "./amazon/successPage";
+import SignIn from "./amazon/signin";
+import SignUp from "./amazon/signup";
 
 const App = () => {
   return (
@@ -27,6 +29,8 @@ const App = () => {
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="successPage" element={<SuccessPage />} />
+          <Route path="signin" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
         </Routes>
         <Footer />
       </div>
