@@ -52,6 +52,17 @@
   margin-bottom: 16px;
 }
 
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.form-row .form-group {
+  margin-bottom: 0;
+}
+
 .form-label {
   display: block;
   font-size: 13px;
@@ -262,6 +273,15 @@
 
   .form-input {
     font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .form-row .form-group {
+    margin-bottom: 16px;
   }
 }
 

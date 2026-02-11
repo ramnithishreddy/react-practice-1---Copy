@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./signin.css";
 
@@ -10,6 +10,15 @@ const SignIn = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+
+  // Load remembered email if exists
+  useEffect(() => {
+    const rememberedEmail = localStorage.getItem("rememberedEmail");
+    if (rememberedEmail) {
+      setEmailOrPhone(rememberedEmail);
+      setRememberMe(true);
+    }
+  }, []);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -55,10 +64,33 @@ const SignIn = () => {
 
     // Simulate authentication delay
     setTimeout(() => {
+      // Get all stored users
+      const allUsers = JSON.parse(localStorage.getItem("allUsers") || "{}");
+      
+      // Check if user exists and password matches
+      const user = allUsers[emailOrPhone];
+      
+      if (!user || user.password !== password) {
+        setLoading(false);
+        setError("Invalid email/phone or password. Please try again.");
+        return;
+      }
+
       setLoading(false);
+
       // Store session data
       sessionStorage.setItem("userEmail", emailOrPhone);
+      sessionStorage.setItem("userName", user.fullName);
       sessionStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("userId", user.userId);
+
+      // Store remember me preference
+      if (rememberMe) {
+        localStorage.setItem("rememberedEmail", emailOrPhone);
+      } else {
+        localStorage.removeItem("rememberedEmail");
+      }
+
       // Navigate to home
       navigate("/");
     }, 1500);
@@ -72,6 +104,12 @@ const SignIn = () => {
     setStep("email");
     setPassword("");
     setError("");
+  };
+
+  const handleForgotPassword = () => {
+    // Store the email/phone for password reset flow
+    sessionStorage.setItem("forgotPasswordEmail", emailOrPhone);
+    navigate("/forgot-password");
   };
 
   const handleKeyPress = (e) => {
@@ -128,9 +166,13 @@ const SignIn = () => {
               </button>
 
               <div className="signin-help">
-                <a href="#forgot" className="help-link">
+                <button 
+                  className="help-link"
+                  onClick={handleForgotPassword}
+                  style={{ background: "none", border: "none", cursor: "pointer" }}
+                >
                   Forgot your password?
-                </a>
+                </button>
               </div>
             </div>
           )}

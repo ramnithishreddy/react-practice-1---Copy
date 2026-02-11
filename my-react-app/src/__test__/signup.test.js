@@ -240,7 +240,7 @@ describe("SignUp Component", () => {
       
       // Should show loading state
       await waitFor(() => {
-        expect(screen.queryByText("Creating account...")).toBeInTheDocument();
+        expect(screen.getByText("Creating account...")).toBeInTheDocument();
       }, { timeout: 2000 });
     });
 

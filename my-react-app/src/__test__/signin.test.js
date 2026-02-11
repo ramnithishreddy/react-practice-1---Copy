@@ -250,7 +250,7 @@ describe("SignIn Component", () => {
       
       // Should show loading state
       await waitFor(() => {
-        expect(screen.queryByText("Signing in...")).toBeInTheDocument();
+        expect(screen.getByText("Signing in...")).toBeInTheDocument();
       }, { timeout: 2000 });
     });
 
@@ -272,7 +272,7 @@ describe("SignIn Component", () => {
       
       // Should trigger sign in (loading state)
       setTimeout(() => {
-        expect(screen.queryByText("Signing in...")).toBeInTheDocument();
+        expect(screen.getByText("Signing in...")).toBeInTheDocument();
       }, 100);
     });
   });

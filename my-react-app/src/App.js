@@ -14,6 +14,8 @@ import Footer from "./amazon/footer";
 import SuccessPage from "./amazon/successPage";
 import SignIn from "./amazon/signin";
 import SignUp from "./amazon/signup";
+import ForgotPassword from "./amazon/forgotPassword";
+import UserAccount from "./amazon/userAccount";
 
 const App = () => {
   return (
@@ -31,6 +33,8 @@ const App = () => {
           <Route path="successPage" element={<SuccessPage />} />
           <Route path="signin" element={<SignIn />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="account" element={<UserAccount />} />
         </Routes>
         <Footer />
       </div>
