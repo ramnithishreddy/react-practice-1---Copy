@@ -19,7 +19,7 @@ import UserAccount from "./amazon/userAccount";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/react-practice-1---Copy">
       <div data-testid="App" className="app-wrapper">
         <Nav />
         <Routes>
