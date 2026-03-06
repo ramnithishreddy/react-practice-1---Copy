@@ -3,6 +3,7 @@ import store from "../redux/store";
 
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import Fashion from "../amazon/fashion";
+import CartProvider from "../amazon/cartProvider";
 import { BrowserRouter as Router } from "react-router-dom";
 
 /* eslint-disable testing-library/no-container, testing-library/no-node-access */
@@ -11,7 +12,9 @@ describe("Fashion Component", () => {
     return render(
       <Router>
         <Provider store={store}>
-          <Fashion />
+          <CartProvider>
+            <Fashion />
+          </CartProvider>
         </Provider>
       </Router>
     );

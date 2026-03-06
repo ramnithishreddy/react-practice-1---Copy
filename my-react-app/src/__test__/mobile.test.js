@@ -4,6 +4,7 @@ import store from "../redux/store";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Mobiles from "../amazon/mobiles";
+import CartProvider from "../amazon/cartProvider";
 
 const mockNavigate = jest.fn();
 
@@ -22,7 +23,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -34,7 +37,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -46,7 +51,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -58,7 +65,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -70,7 +79,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -82,7 +93,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -94,7 +107,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -106,7 +121,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -118,7 +135,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -130,7 +149,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -142,7 +163,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -154,7 +177,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -166,7 +191,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -178,7 +205,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -190,7 +219,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -202,7 +233,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -214,7 +247,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -230,7 +265,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -242,7 +279,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -254,7 +293,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -266,7 +307,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -278,7 +321,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -290,7 +335,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -302,7 +349,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -318,7 +367,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -330,7 +381,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -342,7 +395,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -354,7 +409,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -366,7 +423,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -380,7 +439,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -394,7 +455,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -406,7 +469,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -418,7 +483,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -430,7 +497,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -442,7 +511,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -454,7 +525,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -466,7 +539,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -480,7 +555,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -492,7 +569,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -504,7 +583,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -516,7 +597,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -528,7 +611,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -540,7 +625,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -552,7 +639,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -564,7 +653,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -576,7 +667,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -588,7 +681,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -600,7 +695,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -612,7 +709,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -625,7 +724,9 @@ describe("Mobiles Component", () => {
     const { container } = render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -636,7 +737,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -648,7 +751,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -660,7 +765,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -673,7 +780,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -688,7 +797,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -700,7 +811,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -712,7 +825,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -724,7 +839,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -736,7 +853,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -748,7 +867,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -761,7 +882,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -774,7 +897,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -786,7 +911,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -798,7 +925,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -810,7 +939,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -825,7 +956,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -837,7 +970,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -849,7 +984,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -861,7 +998,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -873,7 +1012,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -885,7 +1026,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -897,7 +1040,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -911,7 +1056,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -923,7 +1070,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -935,7 +1084,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -951,7 +1102,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -963,7 +1116,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -975,7 +1130,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -987,7 +1144,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1002,7 +1161,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1017,7 +1178,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1032,7 +1195,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1047,7 +1212,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1062,7 +1229,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1077,7 +1246,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1092,7 +1263,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1106,7 +1279,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1120,7 +1295,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1134,7 +1311,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1148,7 +1327,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1165,7 +1346,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1180,7 +1363,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1192,7 +1377,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1204,7 +1391,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -1216,7 +1405,9 @@ describe("Mobiles Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Mobiles />
+          <CartProvider>
+            <Mobiles />
+          </CartProvider>
         </Provider>
       </Router>
     );

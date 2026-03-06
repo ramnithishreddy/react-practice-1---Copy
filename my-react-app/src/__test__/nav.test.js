@@ -3,6 +3,7 @@ import store from "../redux/store";
 
 import { render, screen, fireEvent } from "@testing-library/react";
 import Nav from "../amazon/nav";
+import CartProvider from "../amazon/cartProvider";
 import { BrowserRouter as Router } from "react-router-dom";
 
 /* eslint-disable testing-library/no-render-in-setup, testing-library/no-node-access */
@@ -11,7 +12,9 @@ describe("Nav Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Nav />
+          <CartProvider>
+            <Nav />
+          </CartProvider>
         </Provider>
       </Router>
     );
@@ -251,7 +254,9 @@ describe("Nav Component", () => {
     render(
       <Router>
         <Provider store={store}>
-          <Nav />
+          <CartProvider>
+            <Nav />
+          </CartProvider>
         </Provider>
       </Router>
     );

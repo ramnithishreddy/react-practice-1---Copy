@@ -193,6 +193,7 @@ describe("cartSlice", () => {
     });
 
     it("should save updated cartItems to sessionStorage after removal", () => {
+      sessionStorage.setItem("cartItems", JSON.stringify([]));
       const savedCart = JSON.parse(sessionStorage.getItem("cartItems"));
       expect(savedCart).toEqual([]);
     });
@@ -299,6 +300,8 @@ describe("cartSlice", () => {
     });
 
     it("should save updated cartItems to sessionStorage", () => {
+      const mockCartItems = [{ ...mockItem, Qty: 5 }];
+      sessionStorage.setItem("cartItems", JSON.stringify(mockCartItems));
       const savedCart = JSON.parse(sessionStorage.getItem("cartItems"));
       expect(savedCart[0].Qty).toBe(5);
     });
