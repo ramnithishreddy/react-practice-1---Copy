@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./successPage.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import Data from "./data.json";
@@ -7,7 +7,7 @@ import { CART_BUTTON } from "./appDefault";
 
 const SuccessPage = () => {
   const navigate = useNavigate();
-  const { currentQuantity, setCurrentQuantity, checkoutItems } = useCart();
+  const { currentQuantity, setCurrentQuantity } = useCart();
   const loc = useLocation();
   const item = loc.state;
   const [orderNumber] = useState(Math.floor(Math.random() * 1000000000));

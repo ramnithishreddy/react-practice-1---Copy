@@ -2,6 +2,7 @@ import { render, fireEvent } from "@testing-library/react";
 import Footer from "../amazon/footer";
 import { BrowserRouter as Router } from "react-router-dom";
 
+/* eslint-disable testing-library/no-node-access */
 describe("Footer Component", () => {
   beforeEach(() => {
     // Clear all mocks before each test
@@ -374,10 +375,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const backToTopButton = document.querySelector(".back-to-top");
-    if (backToTopButton) {
-      fireEvent.click(backToTopButton);
-      expect(window.scrollTo).toHaveBeenCalled();
-    }
+    expect(backToTopButton).toBeInTheDocument();
+    fireEvent.click(backToTopButton);
+    expect(window.scrollTo).toHaveBeenCalled();
   });
 
   it("should have proper button aria label", () => {
@@ -420,10 +420,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const backToTopButton = document.querySelector(".back-to-top");
-    if (backToTopButton) {
-      fireEvent.click(backToTopButton);
-      expect(scrollToMock).toHaveBeenCalled();
-    }
+    expect(backToTopButton).toBeInTheDocument();
+    fireEvent.click(backToTopButton);
+    expect(scrollToMock).toHaveBeenCalled();
     scrollToMock.mockRestore();
   });
 
@@ -441,18 +440,17 @@ describe("Footer Component", () => {
 
   it("should handle multiple back-to-top clicks", () => {
     const scrollToMock = jest.spyOn(window, "scrollTo").mockImplementation(() => {});
-    const { rerender } = render(
+    render(
       <Router>
         <Footer />
       </Router>
     );
     const button = document.querySelector(".back-to-top");
-    if (button) {
-      fireEvent.click(button);
-      fireEvent.click(button);
-      fireEvent.click(button);
-      expect(scrollToMock).toHaveBeenCalledTimes(3);
-    }
+    expect(button).toBeInTheDocument();
+    fireEvent.click(button);
+    fireEvent.click(button);
+    fireEvent.click(button);
+    expect(scrollToMock).toHaveBeenCalledTimes(3);
     scrollToMock.mockRestore();
   });
 
@@ -463,8 +461,8 @@ describe("Footer Component", () => {
       </Router>
     );
     const footer = document.querySelector("footer");
-    const hasContent = footer && footer.children.length > 0;
-    expect(hasContent).toBe(true);
+    expect(footer).toBeInTheDocument();
+    expect(footer?.children.length).toBeGreaterThan(0);
   });
 
   it("should render all footer columns with content", () => {
@@ -474,9 +472,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const columns = document.querySelectorAll(".footer-column");
+    expect(columns.length).toBeGreaterThan(0);
     columns.forEach((column) => {
-      const hasText = column.textContent && column.textContent.trim().length > 0;
-      expect(hasText).toBe(true);
+      expect(column.textContent?.trim().length).toBeGreaterThan(0);
     });
   });
 
@@ -517,14 +515,13 @@ describe("Footer Component", () => {
       </Router>
     );
     const backToTopButton = document.querySelector(".back-to-top");
-    if (backToTopButton) {
-      fireEvent.click(backToTopButton);
-      expect(scrollToMock).toHaveBeenCalledWith(
-        expect.objectContaining({
-          behavior: expect.any(String),
-        })
-      );
-    }
+    expect(backToTopButton).toBeInTheDocument();
+    fireEvent.click(backToTopButton);
+    expect(scrollToMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        behavior: expect.any(String),
+      })
+    );
     scrollToMock.mockRestore();
   });
 
@@ -536,10 +533,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const careersLink = document.querySelector("a[href='#careers']");
-    if (careersLink) {
-      fireEvent.click(careersLink);
-      expect(window.alert).toHaveBeenCalledWith("Careers at Amazon");
-    }
+    expect(careersLink).toBeInTheDocument();
+    fireEvent.click(careersLink);
+    expect(window.alert).toHaveBeenCalledWith("Careers at Amazon");
   });
 
   it("should trigger alerts on footer column links", () => {
@@ -550,10 +546,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const allLinks = document.querySelectorAll(".footer-column a");
-    if (allLinks.length > 0) {
-      fireEvent.click(allLinks[0]);
-      expect(window.alert).toHaveBeenCalled();
-    }
+    expect(allLinks.length).toBeGreaterThan(0);
+    fireEvent.click(allLinks[0]);
+    expect(window.alert).toHaveBeenCalled();
   });
 
   it("should handle press releases link", () => {
@@ -564,10 +559,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const pressLink = document.querySelector("a[href='#press']");
-    if (pressLink) {
-      fireEvent.click(pressLink);
-      expect(window.alert).toHaveBeenCalledWith("Press Releases");
-    }
+    expect(pressLink).toBeInTheDocument();
+    fireEvent.click(pressLink);
+    expect(window.alert).toHaveBeenCalledWith("Press Releases");
   });
 
   it("should handle social media links", () => {
@@ -578,10 +572,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const facebookLink = document.querySelector("a[href='#facebook']");
-    if (facebookLink) {
-      fireEvent.click(facebookLink);
-      expect(window.alert).toHaveBeenCalledWith("Follow us on Facebook");
-    }
+    expect(facebookLink).toBeInTheDocument();
+    fireEvent.click(facebookLink);
+    expect(window.alert).toHaveBeenCalledWith("Follow us on Facebook");
   });
 
   it("should handle make money links", () => {
@@ -592,10 +585,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const sellLink = document.querySelector("a[href='#sell']");
-    if (sellLink) {
-      fireEvent.click(sellLink);
-      expect(window.alert).toHaveBeenCalledWith("Sell on Amazon");
-    }
+    expect(sellLink).toBeInTheDocument();
+    fireEvent.click(sellLink);
+    expect(window.alert).toHaveBeenCalledWith("Sell on Amazon");
   });
 
   it("should handle help section links", () => {
@@ -606,10 +598,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const accountLink = document.querySelector("a[href='#account']");
-    if (accountLink) {
-      fireEvent.click(accountLink);
-      expect(window.alert).toHaveBeenCalledWith("Your Account");
-    }
+    expect(accountLink).toBeInTheDocument();
+    fireEvent.click(accountLink);
+    expect(window.alert).toHaveBeenCalledWith("Your Account");
   });
 
   it("should handle footer policies links", () => {
@@ -620,10 +611,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const policiesLinks = document.querySelectorAll(".footer-policies a");
-    if (policiesLinks.length > 0) {
-      fireEvent.click(policiesLinks[0]);
-      expect(window.alert).toHaveBeenCalled();
-    }
+    expect(policiesLinks.length).toBeGreaterThan(0);
+    fireEvent.click(policiesLinks[0]);
+    expect(window.alert).toHaveBeenCalled();
   });
 
   it("should trigger home link alert", () => {
@@ -634,10 +624,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const homeLink = document.querySelector("a[href='#home']");
-    if (homeLink) {
-      fireEvent.click(homeLink);
-      expect(window.alert).toHaveBeenCalledWith("Back to Home");
-    }
+    expect(homeLink).toBeInTheDocument();
+    fireEvent.click(homeLink);
+    expect(window.alert).toHaveBeenCalledWith("Back to Home");
   });
 
   it("should handle all footer links interactions", () => {
@@ -649,10 +638,8 @@ describe("Footer Component", () => {
     );
     const allLinks = document.querySelectorAll("a");
     expect(allLinks.length).toBeGreaterThan(15);
-    if (allLinks.length > 0) {
-      fireEvent.click(allLinks[0]);
-      expect(window.alert).toHaveBeenCalled();
-    }
+    fireEvent.click(allLinks[0]);
+    expect(window.alert).toHaveBeenCalled();
   });
 
   it("should execute topFunction on back-to-top button click", () => {
@@ -663,15 +650,14 @@ describe("Footer Component", () => {
       </Router>
     );
     const button = document.querySelector(".back-to-top");
-    if (button) {
-      fireEvent.click(button);
-      expect(scrollToMock).toHaveBeenCalledWith(
-        expect.objectContaining({
-          top: 0,
-          behavior: "smooth",
-        })
-      );
-    }
+    expect(button).toBeInTheDocument();
+    fireEvent.click(button);
+    expect(scrollToMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        top: 0,
+        behavior: "smooth",
+      })
+    );
     scrollToMock.mockRestore();
   });
 
@@ -683,10 +669,11 @@ describe("Footer Component", () => {
       </Router>
     );
     const links = document.querySelectorAll(".footer-column a");
-    links.forEach((link, index) => {
+    expect(links.length).toBeGreaterThan(0);
+    links.forEach((link) => {
       fireEvent.click(link);
-      expect(window.alert).toHaveBeenCalled();
     });
+    expect(window.alert).toHaveBeenCalled();
   });
 
   it("should handle all footer section links", () => {
@@ -733,7 +720,7 @@ describe("Footer Component", () => {
     expect(window.alert).toHaveBeenCalled();
   });
 
-  it("should handle help section links", () => {
+  it("should handle footer help and returns links", () => {
     window.alert = jest.fn();
     render(
       <Router>
@@ -742,6 +729,7 @@ describe("Footer Component", () => {
     );
     const accountLink = document.querySelector("a[href='#account']");
     const returnsLink = document.querySelector("a[href='#returns']");
+    expect(accountLink || returnsLink).toBeInTheDocument();
     if (accountLink) fireEvent.click(accountLink);
     if (returnsLink) fireEvent.click(returnsLink);
     expect(window.alert).toHaveBeenCalled();
@@ -769,11 +757,10 @@ describe("Footer Component", () => {
       </Router>
     );
     const button = document.querySelector(".back-to-top");
-    if (button) {
-      fireEvent.click(button);
-      fireEvent.click(button);
-      expect(scrollToMock).toHaveBeenCalledTimes(2);
-    }
+    expect(button).toBeInTheDocument();
+    fireEvent.click(button);
+    fireEvent.click(button);
+    expect(scrollToMock).toHaveBeenCalledTimes(2);
     scrollToMock.mockRestore();
   });
 
@@ -837,10 +824,9 @@ describe("Footer Component", () => {
       </Router>
     );
     const logoLink = document.querySelector(".footer-logo a");
-    if (logoLink) {
-      fireEvent.click(logoLink);
-      expect(window.alert).toHaveBeenCalledWith("Back to Home");
-    }
+    expect(logoLink).toBeInTheDocument();
+    fireEvent.click(logoLink);
+    expect(window.alert).toHaveBeenCalledWith("Back to Home");
   });
 
   it("should verify all footer links are clickable", () => {
@@ -866,14 +852,13 @@ describe("Footer Component", () => {
       </Router>
     );
     const button = document.querySelector(".back-to-top");
-    if (button) {
-      fireEvent.click(button);
-      expect(scrollToMock).toHaveBeenCalledWith({
-        top: 0,
-        behavior: "smooth",
-      });
-      scrollToMock.mockRestore();
-    }
+    expect(button).toBeInTheDocument();
+    fireEvent.click(button);
+    expect(scrollToMock).toHaveBeenCalledWith({
+      top: 0,
+      behavior: "smooth",
+    });
+    scrollToMock.mockRestore();
   });
 
   it("should handle all footer interactions", () => {

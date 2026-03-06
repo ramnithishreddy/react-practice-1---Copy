@@ -12,14 +12,11 @@ import {
   CURRENCY,
   ADD_TO_WISHLIST,
   REMOVE_FROM_WISHLIST,
-  SAVE_FOR_LATER,
 } from "./appDefault";
 import { addWishlistItem, removeWishlistItem, persistWishlist, loadWishlist } from "./cartUtils";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 
 const ItemDetails = () => {
   const loc = useLocation();

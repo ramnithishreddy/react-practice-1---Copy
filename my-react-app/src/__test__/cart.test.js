@@ -4,6 +4,8 @@ import Cart from "../amazon/cart";
 import { BrowserRouter as Router } from "react-router-dom";
 import CartProvider from "../amazon/cartProvider";
 
+/* eslint-disable testing-library/no-node-access, testing-library/no-container, jest/no-conditional-expect */
+
 describe("Cart Component", () => {
   beforeEach(() => {
     sessionStorage.clear();
@@ -593,7 +595,7 @@ describe("Cart Component", () => {
     expect(container?.children.length).toBeGreaterThan(0);
   });
 
-  it("should display cart page structure", () => {
+  it("should display cart page structure and layout", () => {
     const { container } = render(
       <Router>
         <CartProvider>
@@ -690,7 +692,7 @@ describe("Cart Component", () => {
     expect(container && container.innerHTML.length > 0).toBe(true);
   });
 
-  it("should render cart page completely", () => {
+  it("should render cart page completely with items", () => {
     render(
       <Router>
         <CartProvider>
@@ -975,7 +977,7 @@ describe("Cart Component", () => {
     expect(container).toBeTruthy();
   });
 
-  it("should render complete cart page", () => {
+  it("should render complete cart page with data", () => {
     const { container } = render(
       <Router>
         <CartProvider>
@@ -1419,7 +1421,7 @@ describe("Cart Component", () => {
     expect(container).toBeTruthy();
   });
 
-  it("should handle checkout button click", () => {
+  it("should handle checkout button click and navigate", () => {
     render(
       <Router>
         <CartProvider>
@@ -2164,7 +2166,7 @@ describe("Cart Component", () => {
     ];
     sessionStorage.setItem("cartItems", JSON.stringify(mockItems));
 
-    const { container } = render(
+    render(
       <Router>
         <CartProvider>
           <Cart />

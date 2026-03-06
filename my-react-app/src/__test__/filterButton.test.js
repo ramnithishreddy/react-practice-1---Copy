@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import FilterButton from "../amazon/filterButton";
 
+/* eslint-disable testing-library/no-container, testing-library/no-node-access */
 const mockLowToHigh = jest.fn();
 const mockHighToLow = jest.fn();
 

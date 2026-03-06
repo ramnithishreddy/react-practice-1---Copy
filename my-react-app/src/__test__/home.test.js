@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Home from "../amazon/home";
 
@@ -10,6 +10,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,
 }));
 
+/* eslint-disable testing-library/no-node-access */
 describe("Home Component", () => {
   beforeEach(() => {
     // eslint-disable-next-line testing-library/no-render-in-setup
@@ -258,26 +259,23 @@ describe("Home Component", () => {
 
   it("should click on grocery category card", () => {
     const categoryCards = document.querySelectorAll(".category-card");
-    if (categoryCards.length > 0) {
-      fireEvent.click(categoryCards[0]);
-      expect(categoryCards[0]).toBeInTheDocument();
-    }
+    expect(categoryCards.length).toBeGreaterThan(0);
+    fireEvent.click(categoryCards[0]);
+    expect(categoryCards[0]).toBeInTheDocument();
   });
 
   it("should click on mobiles category card", () => {
     const categoryCards = document.querySelectorAll(".category-card");
-    if (categoryCards.length > 1) {
-      fireEvent.click(categoryCards[1]);
-      expect(categoryCards[1]).toBeInTheDocument();
-    }
+    expect(categoryCards.length).toBeGreaterThan(1);
+    fireEvent.click(categoryCards[1]);
+    expect(categoryCards[1]).toBeInTheDocument();
   });
 
   it("should click on fashion category card", () => {
     const categoryCards = document.querySelectorAll(".category-card");
-    if (categoryCards.length > 2) {
-      fireEvent.click(categoryCards[2]);
-      expect(categoryCards[2]).toBeInTheDocument();
-    }
+    expect(categoryCards.length).toBeGreaterThan(2);
+    fireEvent.click(categoryCards[2]);
+    expect(categoryCards[2]).toBeInTheDocument();
   });
 
   it("should have all category cards clickable", () => {
@@ -312,11 +310,10 @@ describe("Home Component", () => {
 
   it("should handle category navigation", () => {
     const categoryCards = document.querySelectorAll(".category-card");
-    if (categoryCards.length > 0) {
-      fireEvent.click(categoryCards[0]);
-      fireEvent.click(categoryCards[0]);
-      expect(mockNavigate).toHaveBeenCalled();
-    }
+    expect(categoryCards.length).toBeGreaterThan(0);
+    fireEvent.click(categoryCards[0]);
+    fireEvent.click(categoryCards[0]);
+    expect(mockNavigate).toHaveBeenCalled();
   });
 
   it("should render home categories section", () => {
@@ -351,11 +348,10 @@ describe("Home Component", () => {
 
   it("should handle multiple category clicks", () => {
     const categoryCards = document.querySelectorAll(".category-card");
-    if (categoryCards.length >= 2) {
-      fireEvent.click(categoryCards[0]);
-      fireEvent.click(categoryCards[1]);
-      expect(mockNavigate).toHaveBeenCalled();
-    }
+    expect(categoryCards.length).toBeGreaterThanOrEqual(2);
+    fireEvent.click(categoryCards[0]);
+    fireEvent.click(categoryCards[1]);
+    expect(mockNavigate).toHaveBeenCalled();
   });
 
   it("should verify home page structure completeness", () => {

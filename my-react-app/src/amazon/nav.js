@@ -8,7 +8,6 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LanguageIcon from "@mui/icons-material/Language";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import { FASHION, GROCERY, MOBILES } from "./appDefault";
 import { useCart } from "./cartProvider";
 
 export default function Nav() {
