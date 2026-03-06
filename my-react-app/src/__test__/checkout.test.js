@@ -1,12 +1,10 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import Checkout from "../amazon/checkout";
 import CartProvider from "../amazon/cartProvider";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../redux/store";
-import { createMockStoreWithCart } from "./reduxTestUtils";
-import * as cartProvider from "../amazon/cartProvider";
 
 /* eslint-disable testing-library/no-container, testing-library/no-node-access */
 

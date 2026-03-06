@@ -157,7 +157,7 @@ describe("CartProvider Context", () => {
     });
   });
 
-  it("should clear checkout items", async () => {
+  it("should clear checkout items on clear button", async () => {
     render(
       <CartProvider>
         <TestComponent />
@@ -172,13 +172,13 @@ describe("CartProvider Context", () => {
     });
   });
 
-  it("should have useCart hook working", () => {
-    const { container } = render(
+  it("should have useCart hook working properly", () => {
+    render(
       <CartProvider>
         <TestComponent />
       </CartProvider>
     );
-    expect(container.querySelector("[data-testid='cart-items']")).toBeInTheDocument();
+    expect(screen.getByTestId("cart-items")).toBeInTheDocument();
   });
 
   it("should expose cart context values", () => {
@@ -231,7 +231,7 @@ describe("CartProvider Context", () => {
     expect(cartDisplay?.textContent).toBe("0");
   });
 
-  it("should handle sort low to high", async () => {
+  it("should handle sort low to high in cart items", async () => {
     render(
       <CartProvider>
         <TestComponent />
@@ -242,7 +242,7 @@ describe("CartProvider Context", () => {
     expect(sortBtn).toBeInTheDocument();
   });
 
-  it("should handle sort high to low", async () => {
+  it("should handle sort high to low in cart items", async () => {
     render(
       <CartProvider>
         <TestComponent />
@@ -341,7 +341,7 @@ describe("CartProvider Context", () => {
     });
   });
 
-  it("should handle sort low to high", async () => {
+  it("should sort items low to high in context", async () => {
     render(
       <CartProvider>
         <TestComponent />
@@ -354,7 +354,7 @@ describe("CartProvider Context", () => {
     });
   });
 
-  it("should handle sort high to low", async () => {
+  it("should sort items high to low in context", async () => {
     render(
       <CartProvider>
         <TestComponent />
@@ -570,7 +570,7 @@ describe("CartProvider Context", () => {
     expect(screen.getByTestId("checkout-items")).toHaveTextContent("0");
   });
 
-  it("should handle sort low to high", async () => {
+  it("should sort items low to high when items added", async () => {
     render(
       <CartProvider>
         <TestComponent />
@@ -585,7 +585,7 @@ describe("CartProvider Context", () => {
     });
   });
 
-  it("should handle sort high to low", async () => {
+  it("should sort items high to low when items added", async () => {
     render(
       <CartProvider>
         <TestComponent />
@@ -636,7 +636,6 @@ describe("CartProvider Context", () => {
       </CartProvider>
     );
     const addButton = screen.getByTestId("add-to-cart");
-    const initial = screen.getByTestId("cart-items").textContent;
     fireEvent.click(addButton);
     await waitFor(() => {
       expect(screen.getByTestId("cart-items")).toBeInTheDocument();
