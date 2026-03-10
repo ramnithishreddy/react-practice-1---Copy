@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
@@ -14,6 +15,7 @@ export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { cartItems } = useCart();
+  const user = useSelector((state) => state.auth?.user);
   const cartCount = cartItems.reduce((total, item) => total + item.Qty, 0);
 
   const toggleMenu = () => {
@@ -40,7 +42,7 @@ export default function Nav() {
           <div className="account-info">
             <AccountCircleIcon className="account-icon" />
             <div>
-              <span className="account-label">Hello, User</span>
+              <span className="account-label">Hello, {user?.fullName || "User"}</span>
               <Link to="/signin" className="signin-link" onClick={() => setIsOpen(false)}>
                 Sign in / Join
               </Link>

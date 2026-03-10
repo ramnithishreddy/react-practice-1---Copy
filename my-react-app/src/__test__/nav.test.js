@@ -5,6 +5,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import Nav from "../amazon/nav";
 import CartProvider from "../amazon/cartProvider";
 import { BrowserRouter as Router } from "react-router-dom";
+import { createMockStoreWithUser } from "./reduxTestUtils";
 
 /* eslint-disable testing-library/no-render-in-setup, testing-library/no-node-access */
 describe("Nav Component", () => {
@@ -470,6 +471,51 @@ describe("Nav Component", () => {
     const navbar = document.querySelector("nav");
     const children = navbar?.children.length;
     expect(children).toBeGreaterThan(0);
+  });
+
+  it("should display logged-in user's fullName in greeting", () => {
+    const mockStoreWithUser = createMockStoreWithUser({ fullName: "John Doe" });
+    const { container } = render(
+      <Router>
+        <Provider store={mockStoreWithUser}>
+          <CartProvider>
+            <Nav />
+          </CartProvider>
+        </Provider>
+      </Router>
+    );
+    const accountLabel = container.querySelector(".account-label");
+    expect(accountLabel?.textContent).toContain("Hello, John Doe");
+  });
+
+  it("should display default User greeting when fullName is empty", () => {
+    const mockStoreWithUser = createMockStoreWithUser({ fullName: "" });
+    const { container } = render(
+      <Router>
+        <Provider store={mockStoreWithUser}>
+          <CartProvider>
+            <Nav />
+          </CartProvider>
+        </Provider>
+      </Router>
+    );
+    const accountLabel = container.querySelector(".account-label");
+    expect(accountLabel?.textContent).toContain("Hello, User");
+  });
+
+  it("should display user greeting with different user names", () => {
+    const mockStoreWithUser = createMockStoreWithUser({ fullName: "Jane Smith" });
+    const { container } = render(
+      <Router>
+        <Provider store={mockStoreWithUser}>
+          <CartProvider>
+            <Nav />
+          </CartProvider>
+        </Provider>
+      </Router>
+    );
+    const accountLabel = container.querySelector(".account-label");
+    expect(accountLabel?.textContent).toContain("Hello, Jane Smith");
   });
 });
 
