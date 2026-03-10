@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/react-practice-1---Copy/static/css/main.83e1bc46.css",
-    "main.js": "/react-practice-1---Copy/static/js/main.1fcb9c64.js",
+    "main.js": "/react-practice-1---Copy/static/js/main.c42fd41d.js",
     "static/js/206.e62630bc.chunk.js": "/react-practice-1---Copy/static/js/206.e62630bc.chunk.js",
     "index.html": "/react-practice-1---Copy/index.html"
   },
   "entrypoints": [
     "static/css/main.83e1bc46.css",
-    "static/js/main.1fcb9c64.js"
+    "static/js/main.c42fd41d.js"
   ]
 }
