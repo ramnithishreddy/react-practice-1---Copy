@@ -473,6 +473,7 @@ describe("Nav Component", () => {
     expect(children).toBeGreaterThan(0);
   });
 
+  /* eslint-disable testing-library/no-container, testing-library/no-node-access */
   it("should display logged-in user's fullName in greeting", () => {
     const mockStoreWithUser = createMockStoreWithUser({ fullName: "John Doe" });
     const { container } = render(
@@ -517,6 +518,7 @@ describe("Nav Component", () => {
     const accountLabel = container.querySelector(".account-label");
     expect(accountLabel?.textContent).toContain("Hello, Jane Smith");
   });
+  /* eslint-enable testing-library/no-container, testing-library/no-node-access */
 });
 
 
